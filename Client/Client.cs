@@ -14,37 +14,45 @@ namespace Client
     using System.Net.Sockets;
     using System.Threading.Tasks;
 
-  
-        public class Client
+
+    public class Client
+    {
+        public TcpClient TCPClient { get; set; }
+        public NetworkStream Network { get; set; }
+
+        private static Client instance = null;
+
+
+
+        public Client()
         {
-            public TcpClient TCPClient;
-            public NetworkStream network;
 
-            public TcpClient connect()
+            try
             {
-                try
-                {
-                    TcpClient client = new TcpClient("127.0.0.1", 7331);
-                    return client;
-                }
-                catch (SocketException e)
-                {
-                    Console.WriteLine("Unable to connect to server");
-                    throw e;
-                }
-
-
+                TCPClient = new TcpClient("127.0.0.1", 7331);
+                Network = TCPClient.GetStream();
             }
-
-            public void WriteToServer(string besked)
+            catch (SocketException e)
             {
-                byte[] input = new byte[1024];
-                network.Write(Encoding.ASCII.GetBytes(besked), 0, input.Length);
-                network.Flush();
+                Console.WriteLine("Unable to connect to server");
+                throw e;
             }
-
-          
         }
+
+        public static Client Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Client();
+                }
+                return instance;
+            }
+        }
+
     }
+
+}
 
 
