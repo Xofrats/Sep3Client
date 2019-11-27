@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +10,6 @@ namespace Client
     {
         public String Function { get; set; }
         public String Chat { get; set; }
-
-
-    }
+        public String Username { get; set; }
+  }
 }

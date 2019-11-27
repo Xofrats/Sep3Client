@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -75,7 +75,7 @@ namespace Client
             String json = JsonConvert.SerializeObject(bruger);
             //Laver json string om til bytes og sender dem
             client.network.Write(Encoding.ASCII.GetBytes(json), 0, json.Length);
-            //13 er et linje skrift og aflutter linjen
+            //13 er et linje skift og aflutter linjen
             client.network.WriteByte(13);
             //tømmer streamen
             client.network.Flush();
@@ -123,10 +123,96 @@ namespace Client
             stringData = Encoding.ASCII.GetString(data, 0, recv);
             dynamic test = JsonConvert.DeserializeObject(stringData);
             TbChatWindow.Text += test.name + Environment.NewLine;
-
-
-
-
         }
+
+    private void btnAddFriend_Click(object sender, EventArgs e)
+    {
+      //Tager teksten fra textbox message
+      string input = textBoxUsername.Text;
+      //tømmer textbox
+      textBoxUsername.Clear();
+
+      byte[] data = new byte[1024];
+      string stringData;
+
+      //Laver json objekt
+      Bruger bruger = new Bruger();
+      bruger.Username = input;
+      bruger.Function = "Add friend";
+      //Laver objektet om til en string
+      String json = JsonConvert.SerializeObject(bruger);
+      //Laver string om til bytes og sender det
+      client.network.Write(Encoding.ASCII.GetBytes(json), 0, json.Length);
+      //13 er et linje skrift og afslutter linjen.
+      client.network.WriteByte(13);
+      client.network.Flush();
+
+      //venter på svar
+      int recv = client.network.Read(data, 0, data.Length);
+      stringData = Encoding.ASCII.GetString(data, 0, recv);
+      dynamic test = JsonConvert.DeserializeObject(stringData);
+      textBoxFriendRequest.Text += test.name + Environment.NewLine;
     }
+
+    private void textBoxUsername_Click(object sender, EventArgs e)
+    {
+      textBoxUsername.Clear();
+    }
+
+    private void btnAccept_Click(object sender, EventArgs e)
+    {
+      //Tager teksten fra textbox message
+      string input = textBoxFriendRequest.Text;
+      //tømmer textbox
+      textBoxFriendRequest.Clear();
+
+      byte[] data = new byte[1024];
+
+      //Laver json objekt
+      Bruger bruger = new Bruger();
+      bruger.Username = input;
+      bruger.Function = "Accepted";
+      //Laver objektet om til en string
+      String json = JsonConvert.SerializeObject(bruger);
+      //Laver string om til bytes og sender det
+      client.network.Write(Encoding.ASCII.GetBytes(json), 0, json.Length);
+      //13 er et linje skrift og afslutter linjen.
+      client.network.WriteByte(13);
+      client.network.Flush();
+    }
+
+    private void btnReject_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void btnDeleteFriend_Click(object sender, EventArgs e)
+    {
+      //Tager teksten fra textbox message
+      string input = textBoxUsername.Text;
+      //tømmer textbox
+      textBoxUsername.Clear();
+
+      byte[] data = new byte[1024];
+      string stringData;
+
+      //Laver json objekt
+      Bruger bruger = new Bruger();
+      bruger.Username = input;
+      bruger.Function = "Delete friend";
+      //Laver objektet om til en string
+      String json = JsonConvert.SerializeObject(bruger);
+      //Laver string om til bytes og sender det
+      client.network.Write(Encoding.ASCII.GetBytes(json), 0, json.Length);
+      //13 er et linje skrift og afslutter linjen.
+      client.network.WriteByte(13);
+      client.network.Flush();
+
+      //venter på svar
+      int recv = client.network.Read(data, 0, data.Length);
+      stringData = Encoding.ASCII.GetString(data, 0, recv);
+      dynamic test = JsonConvert.DeserializeObject(stringData);
+      textBoxFriendRequest.Text += test.name + Environment.NewLine;
+    }
+  }
 }
