@@ -122,6 +122,7 @@ namespace Client
 			this.textBoxUsername.TabIndex = 7;
 			this.textBoxUsername.Text = "Username";
 			this.textBoxUsername.Click += new System.EventHandler(this.textBoxUsername_Click);
+			this.textBoxUsername.TextChanged += new System.EventHandler(this.textBoxUsername_TextChanged);
 			// 
 			// label1
 			// 

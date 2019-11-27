@@ -1,4 +1,5 @@
-using Client.QueueIn;
+﻿using Client.QueueIn;
+using Newtonsoft.Json;
 using System;
 using System.Text;
 using System.Threading;
@@ -58,28 +59,6 @@ namespace Client
             {
                 Function = "GetFriends"
             };
-            //Laver objektet om til en string
-            String json = JsonConvert.SerializeObject(bruger);
-            //Laver json string om til bytes og sender dem
-            client.network.Write(Encoding.ASCII.GetBytes(json), 0, json.Length);
-            //13 er et linje skift og aflutter linjen
-            client.network.WriteByte(13);
-            //tømmer streamen
-            client.network.Flush();
-
-            //Venter på svar
-            int recv = client.network.Read(data, 0, data.Length);
-            //laver svaret om fra byte til string
-            stringData = Encoding.ASCII.GetString(data, 0, recv);
-            //Laver string om et json objekt
-            dynamic test = JsonConvert.DeserializeObject(stringData);
-
-            foreach (string ven in test.data)
-            {
-                //skriver venner
-                TbFriends.Text += ven + Environment.NewLine;
-               
-            }
 
             //Objektet tager ServerFunctions sig af
             ServerFunctions.AddToQueue(JsonObject);
@@ -100,16 +79,9 @@ namespace Client
                 Function = "Chat"
             };
 
+            //Objektet tager ServerFunctions sig af
             ServerFunctions.AddToQueue(JsonObject);
-  
-
             TbChatWindow.Text += input + Environment.NewLine;
-
-            //venter på svar
-            int recv = client.network.Read(data, 0, data.Length);
-            stringData = Encoding.ASCII.GetString(data, 0, recv);
-            dynamic test = JsonConvert.DeserializeObject(stringData);
-            TbChatWindow.Text += test.name + Environment.NewLine;
         }
 
     private void btnAddFriend_Click(object sender, EventArgs e)
@@ -119,26 +91,10 @@ namespace Client
       //tømmer textbox
       textBoxUsername.Clear();
 
-      byte[] data = new byte[1024];
-      string stringData;
-
       //Laver json objekt
-      Bruger bruger = new Bruger();
-      bruger.Username = input;
-      bruger.Function = "Add friend";
-      //Laver objektet om til en string
-      String json = JsonConvert.SerializeObject(bruger);
-      //Laver string om til bytes og sender det
-      client.network.Write(Encoding.ASCII.GetBytes(json), 0, json.Length);
-      //13 er et linje skrift og afslutter linjen.
-      client.network.WriteByte(13);
-      client.network.Flush();
-
-      //venter på svar
-      int recv = client.network.Read(data, 0, data.Length);
-      stringData = Encoding.ASCII.GetString(data, 0, recv);
-      dynamic test = JsonConvert.DeserializeObject(stringData);
-      textBoxFriendRequest.Text += test.name + Environment.NewLine;
+      Message JsonObject = new Message();
+      JsonObject.Username = input;
+      JsonObject.Function = "Add friend";
     }
 
     private void textBoxUsername_Click(object sender, EventArgs e)
@@ -153,19 +109,10 @@ namespace Client
       //tømmer textbox
       textBoxFriendRequest.Clear();
 
-      byte[] data = new byte[1024];
-
       //Laver json objekt
-      Bruger bruger = new Bruger();
-      bruger.Username = input;
-      bruger.Function = "Accepted";
-      //Laver objektet om til en string
-      String json = JsonConvert.SerializeObject(bruger);
-      //Laver string om til bytes og sender det
-      client.network.Write(Encoding.ASCII.GetBytes(json), 0, json.Length);
-      //13 er et linje skrift og afslutter linjen.
-      client.network.WriteByte(13);
-      client.network.Flush();
+      Message JsonObject = new Message();
+      JsonObject.Username = input;
+      JsonObject.Function = "Accepted";
     }
 
     private void btnReject_Click(object sender, EventArgs e)
@@ -179,6 +126,20 @@ namespace Client
       string input = textBoxUsername.Text;
       //tømmer textbox
       textBoxUsername.Clear();
+
+      //Laver json objekt
+      Message JsonObject = new Message();
+      JsonObject.Username = input;
+      JsonObject.Function = "Delete friend";
+      
+
+
+      textBoxFriendRequest.Text += input + Environment.NewLine;
+            ServerFunctions.AddToQueue(JsonObject);
+
+        }
+
+        delegate void SetTextCallback(string text);
 
         public void ChangeChatWindow(String text)
         {
@@ -194,5 +155,10 @@ namespace Client
             }
             
         }
+
+    private void textBoxUsername_TextChanged(object sender, EventArgs e)
+    {
+
     }
+  }
 }
