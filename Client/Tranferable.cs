@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace Client
 {
-    class Bruger
+    interface ITranferable
     {
-        public String Function { get; set; }
-        public String Chat { get; set; }
-
-
+        String ToJson();
     }
 }
