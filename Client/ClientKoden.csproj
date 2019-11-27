@@ -56,10 +56,9 @@
     <Compile Include="QueueIn\InQueue.cs" />
     <Compile Include="QueueOut\OutConsumer.cs" />
     <Compile Include="QueueOut\OutQueue.cs" />
-    <Compile Include="QueueOut\OutProducer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServerFunctions.cs" />
+    <Compile Include="QueueOut\ServerFunctions.cs" />
     <Compile Include="Tranferable.cs" />
     <Compile Include="UI.cs">
       <SubType>Form</SubType>

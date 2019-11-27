@@ -8,20 +8,25 @@ namespace Client
 {
     public partial class UI : Form
     {
- 
+
+        //laver det objekt der har de funkioner UIen skal bruge
         ServerFunctions ServerFunctions = new ServerFunctions();
 
+        //LAver de objekter der styr køerne
         OutConsumer outConsumer = new OutConsumer();
         InConsumer inConsumer = new InConsumer();
         InProducer inProducer = new InProducer();
 
+        //Kan gemme UIen i sig selv
         public static UI GUIinstance;
 
         public UI()
         {
             //Laver UI'en
             InitializeComponent();
+            // gemmer sig selv
             GUIinstance = this;
+            // starter alle tråde
             startThreads();
         }
 
@@ -29,13 +34,13 @@ namespace Client
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            startThreads();
+            
         }
 
         private void startThreads()
         {
 
-
+            //starter køerne ind og ud
             Thread outConsume = new Thread(new ThreadStart(outConsumer.TakeFromQueue));
             outConsume.Start();
 
@@ -48,13 +53,14 @@ namespace Client
 
         private void GetFriends(object sender, EventArgs e)
         {
-            //Laver JSON objekt
+            //For at hente sin venne liste. Der laves et JsonObjekt
             Message JsonObject = new Message
             {
-                Function = "Venner"
+                Function = "GetFriends"
             };
 
-            ServerFunctions.SendMessage(JsonObject);
+            //Objektet tager ServerFunctions sig af
+            ServerFunctions.AddToQueue(JsonObject);
         }
 
         private void WriteToServer(object sender, EventArgs e)
@@ -72,7 +78,7 @@ namespace Client
                 Function = "Chat"
             };
 
-            ServerFunctions.SendMessage(JsonObject);
+            ServerFunctions.AddToQueue(JsonObject);
   
 
             TbChatWindow.Text += input + Environment.NewLine;

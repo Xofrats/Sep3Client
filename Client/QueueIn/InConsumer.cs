@@ -20,7 +20,7 @@ namespace Client.QueueIn
                 {
                     Console.WriteLine("inConsumer working");
                     dynamic test = InFromServerQueue.Dequeue();
-                    Console.WriteLine(test.function);
+                    
 
                     if (String.Equals((String)test.function, "chat"))
                     {
@@ -29,7 +29,19 @@ namespace Client.QueueIn
                         
                     }
 
-                   
+                    if (String.Equals((String)test.function, "alleVenner"))
+                    {
+                        Console.WriteLine("got  all friends");
+                        String data = "";
+                        foreach (string ven in test.alleVenner)
+                        {
+                            data += ven + Environment.NewLine;
+                        }
+                        Edit.AddToChatWindow(data);
+
+                    }
+
+
                 }
             }
 

@@ -8,6 +8,7 @@ namespace Client
 {
     class OutQueue
     {
+        //Singleton queue der tager klasser der implemeter ITranferable
         public Queue<ITranferable> OutToServerQueue { get; }
 
         private static OutQueue instance = null;

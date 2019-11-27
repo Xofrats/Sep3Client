@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,18 +7,19 @@ using System.Threading.Tasks;
 
 namespace Client
 {
-    class OutProducer
+    class ServerFunctions
     {
+        //Dette objekt fungere som producer for køen
+        //finder køen
         public Queue<ITranferable> OutToServerQueue = OutQueue.Instance.OutToServerQueue;
 
-        public OutProducer()
+        public ServerFunctions()
         {
-           
+          
         }
 
-        public void PutInQueue(ITranferable message)
+        public void AddToQueue(ITranferable message)
         {
-            Console.WriteLine("producer putting in queue");
             OutToServerQueue.Enqueue(message);
         }
     }
