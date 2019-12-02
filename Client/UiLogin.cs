@@ -17,7 +17,7 @@ namespace Client
             InitializeComponent();
         }
 
-     
+
 
         private void BntOpretBrugerSide(object sender, EventArgs e)
         {
@@ -45,5 +45,7 @@ namespace Client
             ServerFunctions ServerFunctions = new ServerFunctions();
             ServerFunctions.AddToQueue(JsonObject);
         }
+
+      
     }
 }
