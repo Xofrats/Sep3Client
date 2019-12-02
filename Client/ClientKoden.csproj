@@ -48,6 +48,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UiOpretbruger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UiOpretbruger.Designer.cs">
+      <DependentUpon>UiOpretbruger.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UiLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include=".Designer.cs">
+      <DependentUpon>UiLogin.cs</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Message.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="QueueIn\EditUI.cs" />
@@ -72,6 +85,12 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="UiOpretbruger.resx">
+      <DependentUpon>UiOpretbruger.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UiLogin.resx">
+      <DependentUpon>UiLogin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI.resx">
       <DependentUpon>UI.cs</DependentUpon>
     </EmbeddedResource>
