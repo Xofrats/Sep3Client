@@ -19,13 +19,13 @@ namespace Client
 
      
 
-        private void bntOpretBrugerSide(object sender, EventArgs e)
+        private void BntOpretBrugerSide(object sender, EventArgs e)
         {
             UiOpretbruger m = new UiOpretbruger();
             m.Show();
         }
 
-        private void bntLogin(object sender, EventArgs e)
+        private void BntLogin(object sender, EventArgs e)
         {
             //Tager teksten fra textbox message
             string input = textBoxUsername.Text;
@@ -35,10 +35,12 @@ namespace Client
             textBoxUsername.Clear();
             textBoxPassword.Clear();
             //Laver json objekt
-            Message JsonObject = new Message();
-            JsonObject.Password = input1;
-            JsonObject.Username = input;
-            JsonObject.Function = "Login";
+            Message JsonObject = new Message
+            {
+                Password = input1,
+                Username = input,
+                Function = "Login"
+            };
 
             ServerFunctions ServerFunctions = new ServerFunctions();
             ServerFunctions.AddToQueue(JsonObject);

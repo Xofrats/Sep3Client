@@ -21,5 +21,10 @@ namespace Client.QueueIn
         {
            UI.GUIinstance.ChangeChatWindow(message);
         }
+
+        public void AddToFriendWindow(String message)
+        {
+          //  UI.GUIinstance.ChangeFriendWindow(message);
+        }
     }
 }

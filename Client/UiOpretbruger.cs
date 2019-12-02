@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Client
 {
-    public partial class UiOpretbruger : Form, 
+    public partial class UiOpretbruger : Form 
     {
         public UiOpretbruger()
         {
@@ -30,11 +30,13 @@ namespace Client
             textBoxPassword.Clear();
 
             //Laver json objekt
-            Message JsonObject = new Message();
-            JsonObject.Password = input2;
-            JsonObject.Username = input1;
-            JsonObject.Email = input;
-            JsonObject.Function = "Opret bruger";
+            Message JsonObject = new Message
+            {
+                Password = input2,
+                Username = input1,
+                Email = input,
+                Function = "Opret bruger"
+            };
 
             ServerFunctions ServerFunctions = new ServerFunctions();
             ServerFunctions.AddToQueue(JsonObject);

@@ -160,5 +160,15 @@ namespace Client
     {
 
     }
-  }
+
+        private void btnLogin(object sender, EventArgs e)
+        {
+            Message JsonObject = new Message();
+            JsonObject.Username = TBloginuser.Text;
+            JsonObject.Chat = TBloginPass.Text;
+            JsonObject.Function = "login";
+
+            ServerFunctions.AddToQueue(JsonObject);
+        }
+    }
 }

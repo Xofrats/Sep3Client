@@ -86,7 +86,7 @@
             this.button1.TabIndex = 5;
             this.button1.Text = "Login";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.bntLogin);
+            this.button1.Click += new System.EventHandler(this.BntLogin);
             // 
             // button2
             // 
@@ -96,7 +96,7 @@
             this.button2.TabIndex = 6;
             this.button2.Text = "Opret Bruger";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.bntOpretBrugerSide);
+            this.button2.Click += new System.EventHandler(this.BntOpretBrugerSide);
             // 
             // Form1
             // 
