@@ -41,6 +41,14 @@ namespace Client.QueueIn
 
                     }
 
+                    if (String.Equals((String)test.function, "Login"))
+                    {
+                        Console.WriteLine("Logging in");
+                        
+                        Edit.Login();
+
+                    }
+
 
                 }
             }
