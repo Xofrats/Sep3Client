@@ -48,7 +48,8 @@ namespace Client
             Message JsonObject = new Message
             {
                 Chat = input,
-                Function = "Chat"
+                Function = "Chat",
+                Username = "Sitch"
             };
 
             //Objektet tager ServerFunctions sig af
@@ -126,6 +127,21 @@ namespace Client
                 this.TbChatWindow.Text = text;
             }
             
-        }      
+        }
+
+        public void ChangeFriendWindow(String text)
+        {
+
+            if (TbFriends.InvokeRequired)
+            {
+                SetTextCallback d = new SetTextCallback(ChangeFriendWindow);
+                TbFriends.Invoke(d, new object[] { TbFriends.Text + text + Environment.NewLine });
+            }
+            else
+            {
+                this.TbFriends.Text = text;
+            }
+
+        }
     }
 }
