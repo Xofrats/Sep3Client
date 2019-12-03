@@ -33,11 +33,13 @@ namespace Client.QueueIn
                     {
                         Console.WriteLine("got all friends");
                         String data = "";
+                        int Count = 0;
                         foreach (var ven in fromServer.data)
                         {
                             data += (String)ven + Environment.NewLine;
+                            Count++;
                         }
-                        Edit.AddToFriendWindow(data);
+                       Edit.AddToFriendWindow(data);
 
                     }
 
@@ -49,17 +51,17 @@ namespace Client.QueueIn
 
                     }
 
-                    if (String.Equals((String)test.function, "friendList"))
+                    if (String.Equals((String)fromServer.function, "friendList"))
                     {
                         String data = "";
-                        foreach (string request in test.FriendRequest)
+                        foreach (string request in fromServer.FriendRequest)
                         {
                           data += request + Environment.NewLine;
                         }
                         Edit.GetAllFriendRequest(data);
 
                         String first = "";
-                        foreach (string oneRequest in test.FriendRequest)
+                        foreach (string oneRequest in fromServer.FriendRequest)
                         {
                           first += oneRequest.First();
                         }
@@ -67,10 +69,10 @@ namespace Client.QueueIn
 
                     }
 
-                    if (String.Equals((String)test.accepted, "Friend added"))
+                    if (String.Equals((String)fromServer.accepted, "Friend added"))
                     {
-                                String data = test.accepted;
-                                Edit.AcceptFriendRequest(data);
+                                String data = fromServer.accepted;
+                               // Edit.AcceptFriendRequest(data);
 
                     }
                 }

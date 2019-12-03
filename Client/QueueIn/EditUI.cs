@@ -29,14 +29,11 @@ namespace Client.QueueIn
       UI.GUIinstance.ChangeOneFriendList(message);
     }
 
-        public void AddToChatWindow(String message)
-        {
-           UI.GUIinstance.ChangeChatWindow(message);
-        }
+     
 
         public void AddToFriendWindow(String message)
         {
-           UI.GUIinstance.ChangeFriendWindow(message);
+           UI.GUIinstance.AddToFriendWindow(message);
         }
 
         public void Login()

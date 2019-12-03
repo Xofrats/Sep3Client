@@ -44,7 +44,7 @@ namespace Client
                 } else
                 {
                     Console.WriteLine("Sleeping");
-                    Thread.Sleep(5000);
+                    Thread.Sleep(2000);
                 }
             }
 

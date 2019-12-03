@@ -34,7 +34,7 @@ namespace Client
             {
                 Password = input2,
                 Username = input1,
-                Email = input,
+      
                 Function = "create user"
             };
 

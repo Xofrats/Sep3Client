@@ -31,7 +31,7 @@ namespace Client
         {
             UiOpretbruger m = new UiOpretbruger();
             m.Show();
-            this.hide(Form1);
+            this.Hide();
 
 
         }

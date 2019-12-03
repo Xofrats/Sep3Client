@@ -2,6 +2,7 @@ using Client.QueueIn;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -137,6 +138,44 @@ namespace Client
             
         }
 
+        public void AddToFriendWindow(String text)
+        {
+
+            if (TbFriends.InvokeRequired)
+            {
+                SetTextCallback d = new SetTextCallback(AddToFriendWindow);
+                TbFriends.Invoke(d, new object[] { TbFriends.Text + text + Environment.NewLine });
+            }
+            else
+            {
+                this.TbFriends.Text = text;
+            }
+
+        }
+
+
+        public void ChangeFriendWindow(String text, int count)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                Button btn = new Button();
+                btn.Location = new Point(0, i * 25);
+                TbFriends.Controls.Add(btn);
+            }
+        }
+
+        private void BTNtest_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                Button btn = new Button();
+                btn.Location = new Point(0, i * 25);
+                TbFriends.Controls.Add(btn);
+            }
+
+
+        }
+
         public void ChangeGetAllFriendList(String text)
         {
 
@@ -195,5 +234,7 @@ namespace Client
           }
 
         }
-  }
+
+       
+    }
 }
