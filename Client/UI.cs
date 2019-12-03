@@ -13,12 +13,6 @@ namespace Client
 
         //laver det objekt der har de funkioner UIen skal bruge
         ServerFunctions ServerFunctions = new ServerFunctions();
-
-        //LAver de objekter der styr køerne
-        OutConsumer outConsumer = new OutConsumer();
-        InConsumer inConsumer = new InConsumer();
-        InProducer inProducer = new InProducer();
-
         //Kan gemme UIen i sig selv
         public static UI GUIinstance;
 
@@ -27,30 +21,8 @@ namespace Client
             //Laver UI'en
             InitializeComponent();
             // gemmer sig selv
-            GUIinstance = this;
-            // starter alle tråde
-            startThreads();
-        }
-
-     
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void startThreads()
-        {
-
-            //starter køerne ind og ud
-            Thread outConsume = new Thread(new ThreadStart(outConsumer.TakeFromQueue));
-            outConsume.Start();
-
-            Thread inConsume = new Thread(new ThreadStart(inConsumer.FromServer));
-            inConsume.Start();
-
-            Thread inProduce = new Thread(new ThreadStart(inProducer.ListenToServer));
-            inProduce.Start();
+           GUIinstance = this;
+          
         }
 
         private void GetFriends(object sender, EventArgs e)
@@ -77,7 +49,8 @@ namespace Client
             Message JsonObject = new Message
             {
                 Chat = input,
-                Function = "Chat"
+                Function = "Chat",
+                Username = "Sitch"
             };
 
             //Objektet tager ServerFunctions sig af
@@ -123,12 +96,12 @@ namespace Client
 
     }
 
-    private void btnReject_Click(object sender, EventArgs e)
+    private void BtnReject_Click(object sender, EventArgs e)
     {
 
     }
 
-    private void btnDeleteFriend_Click(object sender, EventArgs e)
+    private void BtnDeleteFriend_Click(object sender, EventArgs e)
     {
       //Tager teksten fra textbox message
       string input = textBoxUsername.Text;

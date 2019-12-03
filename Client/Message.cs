@@ -9,9 +9,11 @@ namespace Client
     {
         public String Function { get; set; }
         public String Chat { get; set; }
-    public String Username { get; set; }
+        public String Username { get; set; }
+        public String Password { get; set; }
+        public String Email { get; set; }
 
-    public string ToJson()
+        public string ToJson()
         {
             String JsonString = JsonConvert.SerializeObject(this);
             return JsonString;

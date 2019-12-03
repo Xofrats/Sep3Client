@@ -10,8 +10,9 @@ namespace Client
     {
         public Queue<ITranferable> OutToServerQueue { get; set; }
         private Client client = Client.Instance;
+        public String Username { get; set; }
 
-        byte[] data = new byte[1024];
+        private byte[] data = new byte[1024];
 
         public OutConsumer()
         {
