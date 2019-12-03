@@ -1,6 +1,7 @@
-﻿using Client.QueueIn;
+using Client.QueueIn;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -68,6 +69,10 @@ namespace Client
       Message JsonObject = new Message();
       JsonObject.Username = input;
       JsonObject.Function = "Add friend";
+
+      //Objektet tager ServerFunctions sig af
+      ServerFunctions.AddToQueue(JsonObject);
+      textBoxUsername.Text += input;
     }
 
     private void textBoxUsername_Click(object sender, EventArgs e)
@@ -86,6 +91,9 @@ namespace Client
       Message JsonObject = new Message();
       JsonObject.Username = input;
       JsonObject.Function = "Accepted";
+
+      textBoxFriendRequest.Clear();
+
     }
 
     private void BtnReject_Click(object sender, EventArgs e)
@@ -114,7 +122,7 @@ namespace Client
 
         delegate void SetTextCallback(string text);
 
-        public void ChangeChatWindow(String text)
+    public void ChangeChatWindow(String text)
         {
             
             if (TbChatWindow.InvokeRequired)
@@ -129,19 +137,63 @@ namespace Client
             
         }
 
-        public void ChangeFriendWindow(String text)
+        public void ChangeGetAllFriendList(String text)
         {
 
-            if (TbFriends.InvokeRequired)
-            {
-                SetTextCallback d = new SetTextCallback(ChangeFriendWindow);
-                TbFriends.Invoke(d, new object[] { TbFriends.Text + text + Environment.NewLine });
-            }
-            else
-            {
-                this.TbFriends.Text = text;
-            }
+          if (textBoxAllRequest.InvokeRequired)
+          {
+            SetTextCallback d = new SetTextCallback(ChangeGetAllFriendList);
+            textBoxAllRequest.Invoke(d, new object[] { textBoxAllRequest.Text + text + Environment.NewLine });
+          }
+          else
+          {
+            this.textBoxAllRequest.Text = text;
+          }
 
         }
+
+    public void ChangeAllFriendList(String text)
+    {
+
+      if (textBoxAllRequest.InvokeRequired)
+      {
+        SetTextCallback d = new SetTextCallback(ChangeAllFriendList);
+        textBoxAllRequest.Invoke(d, new object[] { textBoxAllRequest.Text + text + Environment.NewLine });
+      }
+      else
+      {
+        this.textBoxAllRequest.Text = text;
+      }
+
     }
+
+    public void ChangeOneFriendList(String text)
+        {
+
+          if (textBoxFriendRequest.InvokeRequired)
+          {
+            SetTextCallback d = new SetTextCallback(ChangeOneFriendList);
+        textBoxFriendRequest.Invoke(d, new object[] { textBoxFriendRequest.Text + text + Environment.NewLine });
+          }
+          else
+          {
+            this.textBoxFriendRequest.Text = text;
+          }
+        }
+
+    public void ChangeFriendRequest(String text)
+        {
+
+          if (textBoxFriendRequest.InvokeRequired)
+          {
+            SetTextCallback d = new SetTextCallback(ChangeFriendRequest);
+            textBoxFriendRequest.Invoke(d, new object[] { textBoxFriendRequest.Text + text + Environment.NewLine });
+          }
+          else
+          {
+            this.textBoxFriendRequest.Text = text;
+          }
+
+        }
+  }
 }
