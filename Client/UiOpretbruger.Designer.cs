@@ -30,14 +30,11 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBoxEmail = new System.Windows.Forms.TextBox();
             this.textBoxPassword = new System.Windows.Forms.TextBox();
             this.textBoxUsername = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.bntOpretBruger = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -56,13 +53,6 @@
             this.label2.Size = new System.Drawing.Size(91, 17);
             this.label2.TabIndex = 1;
             this.label2.Text = "Opret Bruger";
-            // 
-            // textBoxEmail
-            // 
-            this.textBoxEmail.Location = new System.Drawing.Point(260, 140);
-            this.textBoxEmail.Name = "textBoxEmail";
-            this.textBoxEmail.Size = new System.Drawing.Size(172, 22);
-            this.textBoxEmail.TabIndex = 2;
             // 
             // textBoxPassword
             // 
@@ -96,15 +86,6 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "Brugernavn";
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(323, 120);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(47, 17);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "E-mail";
-            // 
             // bntOpretBruger
             // 
             this.bntOpretBruger.Location = new System.Drawing.Point(260, 347);
@@ -115,28 +96,16 @@
             this.bntOpretBruger.UseVisualStyleBackColor = true;
             this.bntOpretBruger.Click += new System.EventHandler(this.BntOpretBruger_Click);
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(602, 444);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 32);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "Luk";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
             // UiOpretbruger
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(707, 488);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.bntOpretBruger);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBoxUsername);
             this.Controls.Add(this.textBoxPassword);
-            this.Controls.Add(this.textBoxEmail);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "UiOpretbruger";
@@ -151,13 +120,10 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBoxEmail;
         private System.Windows.Forms.TextBox textBoxPassword;
         private System.Windows.Forms.TextBox textBoxUsername;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button bntOpretBruger;
-        private System.Windows.Forms.Button button2;
     }
 }

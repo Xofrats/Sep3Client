@@ -20,12 +20,12 @@ namespace Client
         private void BntOpretBruger_Click(object sender, EventArgs e)
         {
             //Tager teksten fra textbox message
-            string input = textBoxEmail.Text;
+           
             string input1 = textBoxUsername.Text;
             string input2 = textBoxPassword.Text;
             
             //tømmer textbox
-            textBoxEmail.Clear();
+           ;
             textBoxUsername.Clear();
             textBoxPassword.Clear();
 
@@ -35,7 +35,7 @@ namespace Client
                 Password = input2,
                 Username = input1,
                 Email = input,
-                Function = "Opret bruger"
+                Function = "create user"
             };
 
             ServerFunctions ServerFunctions = new ServerFunctions();
