@@ -31,6 +31,9 @@ namespace Client
         {
             UiOpretbruger m = new UiOpretbruger();
             m.Show();
+            this.hide(Form1);
+
+
         }
 
         private void BntLogin(object sender, EventArgs e)
