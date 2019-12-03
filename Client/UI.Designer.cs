@@ -42,6 +42,7 @@ namespace Client
 			this.btnAccept = new System.Windows.Forms.Button();
 			this.btnReject = new System.Windows.Forms.Button();
 			this.label3 = new System.Windows.Forms.Label();
+			this.textBoxAllRequest = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
 			// 
 			// BtnSendMessage
@@ -122,7 +123,6 @@ namespace Client
 			this.textBoxUsername.TabIndex = 7;
 			this.textBoxUsername.Text = "Username";
 			this.textBoxUsername.Click += new System.EventHandler(this.textBoxUsername_Click);
-			this.textBoxUsername.TextChanged += new System.EventHandler(this.textBoxUsername_TextChanged);
 			// 
 			// label1
 			// 
@@ -176,11 +176,20 @@ namespace Client
 			this.label3.TabIndex = 12;
 			this.label3.Text = "Friend request from:";
 			// 
+			// textBoxAllRequest
+			// 
+			this.textBoxAllRequest.Location = new System.Drawing.Point(328, 405);
+			this.textBoxAllRequest.Multiline = true;
+			this.textBoxAllRequest.Name = "textBoxAllRequest";
+			this.textBoxAllRequest.Size = new System.Drawing.Size(100, 89);
+			this.textBoxAllRequest.TabIndex = 13;
+			// 
 			// UI
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(612, 523);
+			this.Controls.Add(this.textBoxAllRequest);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.btnReject);
 			this.Controls.Add(this.btnAccept);
@@ -219,5 +228,6 @@ namespace Client
     private System.Windows.Forms.Button btnAccept;
     private System.Windows.Forms.Button btnReject;
     private System.Windows.Forms.Label label3;
+    private System.Windows.Forms.TextBox textBoxAllRequest;
   }
 }

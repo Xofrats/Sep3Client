@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,14 +41,32 @@ namespace Client.QueueIn
 
                     }
 
+                    if (String.Equals((String)test.function, "friendList"))
+                    {
+                        String data = "";
+                        foreach (string request in test.FriendRequest)
+                        {
+                          data += request + Environment.NewLine;
+                        }
+                        Edit.GetAllFriendRequest(data);
 
+                        String first = "";
+                        foreach (string oneRequest in test.FriendRequest)
+                        {
+                          first += oneRequest.First();
+                        }
+                        Edit.GetOneFriendRequest(first);
+
+                    }
+
+                    if (String.Equals((String)test.accepted, "Friend added"))
+                    {
+                                String data = test.accepted;
+                                Edit.AcceptFriendRequest(data);
+
+                    }
                 }
             }
-
-            
-
-            
         }
-       
     }
 }
