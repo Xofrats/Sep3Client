@@ -19,25 +19,33 @@ namespace Client.QueueIn
                 if (InFromServerQueue.Count > 0)
                 {
                     Console.WriteLine("inConsumer working");
-                    dynamic test = InFromServerQueue.Dequeue();
-                    Console.WriteLine("function is: " + test.function);
+                    dynamic fromServer = InFromServerQueue.Dequeue();
+                    Console.WriteLine("function is: " + fromServer.function);
 
-                    if (String.Equals((String)test.function, "chat"))
+                    if (String.Equals((String)fromServer.function, "chat"))
                     {
                         Console.WriteLine("Adding to chat window");
-                        Edit.AddToChatWindow((String)test.name);
+                        Edit.AddToChatWindow((String)fromServer.username + "wrote: " + (String)fromServer.data);
                         
                     }
 
-                    if (String.Equals((String)test.function, "alleVenner"))
+                    if (String.Equals((String)fromServer.function, "alleVenner"))
                     {
                         Console.WriteLine("got all friends");
                         String data = "";
-                        foreach (var ven in test.data)
+                        foreach (var ven in fromServer.data)
                         {
                             data += (String)ven + Environment.NewLine;
                         }
                         Edit.AddToFriendWindow(data);
+
+                    }
+
+                    if (String.Equals((String)fromServer.function, "Login"))
+                    {
+                        Console.WriteLine("Logging in");
+                        
+                        Edit.Login();
 
                     }
 

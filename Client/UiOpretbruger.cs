@@ -41,5 +41,10 @@ namespace Client
             ServerFunctions ServerFunctions = new ServerFunctions();
             ServerFunctions.AddToQueue(JsonObject);
         }
+
+        private void UiOpretbruger_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

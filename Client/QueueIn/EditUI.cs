@@ -8,10 +8,6 @@ namespace Client.QueueIn
 {
     class EditUI
     {
-        
-
-     
-
         public EditUI()
         {
 
@@ -24,7 +20,12 @@ namespace Client.QueueIn
 
         public void AddToFriendWindow(String message)
         {
-          //  UI.GUIinstance.ChangeFriendWindow(message);
+           UI.GUIinstance.ChangeFriendWindow(message);
+        }
+
+        public void Login()
+        {
+            Form1.GUIinstance.LoginToChat();
         }
     }
 }

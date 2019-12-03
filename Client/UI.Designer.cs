@@ -42,11 +42,6 @@ namespace Client
             this.btnAccept = new System.Windows.Forms.Button();
             this.btnReject = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.TBloginuser = new System.Windows.Forms.TextBox();
-            this.TBloginPass = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.BTNlogin = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // BtnSendMessage
@@ -92,7 +87,7 @@ namespace Client
             // BtnFriends
             // 
             this.BtnFriends.Location = new System.Drawing.Point(596, 363);
-            this.BtnFriends.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnFriends.Margin = new System.Windows.Forms.Padding(4);
             this.BtnFriends.Name = "BtnFriends";
             this.BtnFriends.Size = new System.Drawing.Size(195, 28);
             this.BtnFriends.TabIndex = 4;
@@ -103,7 +98,7 @@ namespace Client
             // btnAddFriend
             // 
             this.btnAddFriend.Location = new System.Drawing.Point(595, 464);
-            this.btnAddFriend.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddFriend.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddFriend.Name = "btnAddFriend";
             this.btnAddFriend.Size = new System.Drawing.Size(87, 28);
             this.btnAddFriend.TabIndex = 5;
@@ -114,24 +109,23 @@ namespace Client
             // btnDeleteFriend
             // 
             this.btnDeleteFriend.Location = new System.Drawing.Point(691, 464);
-            this.btnDeleteFriend.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDeleteFriend.Margin = new System.Windows.Forms.Padding(4);
             this.btnDeleteFriend.Name = "btnDeleteFriend";
             this.btnDeleteFriend.Size = new System.Drawing.Size(100, 28);
             this.btnDeleteFriend.TabIndex = 6;
             this.btnDeleteFriend.Text = "Delete";
             this.btnDeleteFriend.UseVisualStyleBackColor = true;
-            this.btnDeleteFriend.Click += new System.EventHandler(this.btnDeleteFriend_Click);
+            this.btnDeleteFriend.Click += new System.EventHandler(this.BtnDeleteFriend_Click);
             // 
             // textBoxUsername
             // 
             this.textBoxUsername.Location = new System.Drawing.Point(595, 432);
-            this.textBoxUsername.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxUsername.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxUsername.Name = "textBoxUsername";
             this.textBoxUsername.Size = new System.Drawing.Size(193, 22);
             this.textBoxUsername.TabIndex = 7;
             this.textBoxUsername.Text = "Username";
             this.textBoxUsername.Click += new System.EventHandler(this.textBoxUsername_Click);
-            this.textBoxUsername.TextChanged += new System.EventHandler(this.textBoxUsername_TextChanged);
             // 
             // label1
             // 
@@ -154,7 +148,7 @@ namespace Client
             // textBoxFriendRequest
             // 
             this.textBoxFriendRequest.Location = new System.Drawing.Point(595, 548);
-            this.textBoxFriendRequest.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxFriendRequest.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxFriendRequest.Name = "textBoxFriendRequest";
             this.textBoxFriendRequest.Size = new System.Drawing.Size(195, 22);
             this.textBoxFriendRequest.TabIndex = 9;
@@ -162,7 +156,7 @@ namespace Client
             // btnAccept
             // 
             this.btnAccept.Location = new System.Drawing.Point(595, 580);
-            this.btnAccept.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAccept.Margin = new System.Windows.Forms.Padding(4);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(87, 28);
             this.btnAccept.TabIndex = 10;
@@ -173,13 +167,13 @@ namespace Client
             // btnReject
             // 
             this.btnReject.Location = new System.Drawing.Point(691, 580);
-            this.btnReject.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnReject.Margin = new System.Windows.Forms.Padding(4);
             this.btnReject.Name = "btnReject";
             this.btnReject.Size = new System.Drawing.Size(100, 28);
             this.btnReject.TabIndex = 11;
             this.btnReject.Text = "Reject";
             this.btnReject.UseVisualStyleBackColor = true;
-            this.btnReject.Click += new System.EventHandler(this.btnReject_Click);
+            this.btnReject.Click += new System.EventHandler(this.BtnReject_Click);
             // 
             // label3
             // 
@@ -191,58 +185,11 @@ namespace Client
             this.label3.TabIndex = 12;
             this.label3.Text = "Friend request from:";
             // 
-            // TBloginuser
-            // 
-            this.TBloginuser.Location = new System.Drawing.Point(37, 454);
-            this.TBloginuser.Name = "TBloginuser";
-            this.TBloginuser.Size = new System.Drawing.Size(100, 22);
-            this.TBloginuser.TabIndex = 13;
-            // 
-            // TBloginPass
-            // 
-            this.TBloginPass.Location = new System.Drawing.Point(37, 483);
-            this.TBloginPass.Name = "TBloginPass";
-            this.TBloginPass.Size = new System.Drawing.Size(100, 22);
-            this.TBloginPass.TabIndex = 14;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(144, 458);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(71, 17);
-            this.label4.TabIndex = 15;
-            this.label4.Text = "username";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(144, 488);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(68, 17);
-            this.label5.TabIndex = 16;
-            this.label5.Text = "password";
-            // 
-            // BTNlogin
-            // 
-            this.BTNlogin.Location = new System.Drawing.Point(103, 525);
-            this.BTNlogin.Name = "BTNlogin";
-            this.BTNlogin.Size = new System.Drawing.Size(75, 23);
-            this.BTNlogin.TabIndex = 17;
-            this.BTNlogin.Text = "login";
-            this.BTNlogin.UseVisualStyleBackColor = true;
-            this.BTNlogin.Click += new System.EventHandler(this.btnLogin);
-            // 
             // UI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(816, 644);
-            this.Controls.Add(this.BTNlogin);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.TBloginPass);
-            this.Controls.Add(this.TBloginuser);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnReject);
             this.Controls.Add(this.btnAccept);
@@ -281,10 +228,5 @@ namespace Client
     private System.Windows.Forms.Button btnAccept;
     private System.Windows.Forms.Button btnReject;
     private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox TBloginuser;
-        private System.Windows.Forms.TextBox TBloginPass;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button BTNlogin;
     }
 }
