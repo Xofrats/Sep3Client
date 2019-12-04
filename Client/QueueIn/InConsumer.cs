@@ -25,7 +25,8 @@ namespace Client.QueueIn
                     if (String.Equals((String)fromServer.function, "chat"))
                     {
                         Console.WriteLine("Adding to chat window");
-                        Edit.AddToChatWindow((String)fromServer.username + "wrote: " + (String)fromServer.data);
+
+                        Edit.AddToChatWindow((String)fromServer.username,(String)fromServer.username + " wrote: " + (String)fromServer.data);
                         
                     }
 

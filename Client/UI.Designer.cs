@@ -28,9 +28,6 @@ namespace Client
         /// </summary>
         private void InitializeComponent()
         {
-            this.BtnSendMessage = new System.Windows.Forms.Button();
-            this.TextBoxMessage = new System.Windows.Forms.TextBox();
-            this.TbChatWindow = new System.Windows.Forms.TextBox();
             this.TbFriends = new System.Windows.Forms.TextBox();
             this.BtnFriends = new System.Windows.Forms.Button();
             this.btnAddFriend = new System.Windows.Forms.Button();
@@ -45,36 +42,6 @@ namespace Client
             this.textBoxAllRequest = new System.Windows.Forms.TextBox();
             this.HiddenFriends = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // BtnSendMessage
-            // 
-            this.BtnSendMessage.Location = new System.Drawing.Point(437, 362);
-            this.BtnSendMessage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.BtnSendMessage.Name = "BtnSendMessage";
-            this.BtnSendMessage.Size = new System.Drawing.Size(75, 23);
-            this.BtnSendMessage.TabIndex = 0;
-            this.BtnSendMessage.Text = "Send";
-            this.BtnSendMessage.UseVisualStyleBackColor = true;
-            this.BtnSendMessage.Click += new System.EventHandler(this.WriteToServer);
-            // 
-            // TextBoxMessage
-            // 
-            this.TextBoxMessage.Location = new System.Drawing.Point(37, 363);
-            this.TextBoxMessage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.TextBoxMessage.Multiline = true;
-            this.TextBoxMessage.Name = "TextBoxMessage";
-            this.TextBoxMessage.Size = new System.Drawing.Size(393, 52);
-            this.TextBoxMessage.TabIndex = 1;
-            // 
-            // TbChatWindow
-            // 
-            this.TbChatWindow.Location = new System.Drawing.Point(37, 53);
-            this.TbChatWindow.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.TbChatWindow.Multiline = true;
-            this.TbChatWindow.Name = "TbChatWindow";
-            this.TbChatWindow.ReadOnly = true;
-            this.TbChatWindow.Size = new System.Drawing.Size(473, 303);
-            this.TbChatWindow.TabIndex = 2;
             // 
             // TbFriends
             // 
@@ -106,7 +73,7 @@ namespace Client
             this.btnAddFriend.TabIndex = 5;
             this.btnAddFriend.Text = "Add";
             this.btnAddFriend.UseVisualStyleBackColor = true;
-            this.btnAddFriend.Click += new System.EventHandler(this.btnAddFriend_Click);
+            this.btnAddFriend.Click += new System.EventHandler(this.AddFriend_Click);
             // 
             // btnDeleteFriend
             // 
@@ -127,7 +94,7 @@ namespace Client
             this.textBoxUsername.Size = new System.Drawing.Size(193, 22);
             this.textBoxUsername.TabIndex = 7;
             this.textBoxUsername.Text = "Username";
-            this.textBoxUsername.Click += new System.EventHandler(this.textBoxUsername_Click);
+            this.textBoxUsername.Click += new System.EventHandler(this.TextBoxUsername_Click);
             // 
             // label1
             // 
@@ -164,7 +131,7 @@ namespace Client
             this.btnAccept.TabIndex = 10;
             this.btnAccept.Text = "Accept";
             this.btnAccept.UseVisualStyleBackColor = true;
-            this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
+            this.btnAccept.Click += new System.EventHandler(this.BtnAccept_Click);
             // 
             // btnReject
             // 
@@ -198,7 +165,7 @@ namespace Client
             // 
             // HiddenFriends
             // 
-            this.HiddenFriends.Location = new System.Drawing.Point(50, 468);
+            this.HiddenFriends.Location = new System.Drawing.Point(12, 12);
             this.HiddenFriends.Name = "HiddenFriends";
             this.HiddenFriends.Size = new System.Drawing.Size(75, 23);
             this.HiddenFriends.TabIndex = 14;
@@ -223,9 +190,6 @@ namespace Client
             this.Controls.Add(this.btnAddFriend);
             this.Controls.Add(this.BtnFriends);
             this.Controls.Add(this.TbFriends);
-            this.Controls.Add(this.TbChatWindow);
-            this.Controls.Add(this.TextBoxMessage);
-            this.Controls.Add(this.BtnSendMessage);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "UI";
             this.Text = "UI";
@@ -235,10 +199,6 @@ namespace Client
         }
 
         #endregion
-
-        private System.Windows.Forms.Button BtnSendMessage;
-        private System.Windows.Forms.TextBox TextBoxMessage;
-        private System.Windows.Forms.TextBox TbChatWindow;
         private System.Windows.Forms.TextBox TbFriends;
         private System.Windows.Forms.Button BtnFriends;
     private System.Windows.Forms.Button btnAddFriend;

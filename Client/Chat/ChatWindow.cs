@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Client.Chat;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,15 +13,22 @@ namespace Client
 {
     public partial class ChatWindow : Form
     {
-        public String Name { get; set; }
+        public new String Name { get; set; }
         ServerFunctions Server = new ServerFunctions();
+      
+        delegate void SetTextCallback(string text);
 
         public ChatWindow(String NewName)
         {
             InitializeComponent();
             Name = NewName;
+            Console.WriteLine(Name);
             TbChatTitle.Text = "Chat with " + Name;
-            
+            GuiCollection AllGUIs = GuiCollection.GetCollectionsInstance;
+            AllGUIs.AddGUI(Name, this);
+
+
+
         }
 
         private void SendChat(object sender, EventArgs e)
@@ -44,6 +52,21 @@ namespace Client
                 Server.AddToQueue(JsonObject);
                 TbChatWindow.Text += "You wrote: "+ input + Environment.NewLine;
             
+        }
+
+        public void ChangeChatWindow(String text)
+        {
+
+            if (TbChatWindow.InvokeRequired)
+            {
+                SetTextCallback d = new SetTextCallback(ChangeChatWindow);
+                TbChatWindow.Invoke(d, new object[] { TbChatWindow.Text + text + Environment.NewLine });
+            }
+            else
+            {
+                this.TbChatWindow.Text = text;
+            }
+
         }
     }
 }

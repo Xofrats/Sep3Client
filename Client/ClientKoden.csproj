@@ -48,12 +48,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChatWindow.cs">
+    <Compile Include="Chat\ChatWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ChatWindow.Designer.cs">
+    <Compile Include="Chat\ChatWindow.Designer.cs">
       <DependentUpon>ChatWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Chat\GuiCollection.cs" />
     <Compile Include="UILogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,7 +91,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ChatWindow.resx">
+    <EmbeddedResource Include="Chat\ChatWindow.resx">
       <DependentUpon>ChatWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UILogin.resx">
