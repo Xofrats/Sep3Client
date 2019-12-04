@@ -32,14 +32,14 @@ namespace Client.QueueIn
                     if (String.Equals((String)fromServer.function, "alleVenner"))
                     {
                         Console.WriteLine("got all friends");
-                        String data = "";
+                        List<String> names = new List<string>();
                         int Count = 0;
                         foreach (var ven in fromServer.data)
                         {
-                            data += (String)ven + Environment.NewLine;
+                            names.Add((String)ven);
                             Count++;
                         }
-                       Edit.AddToFriendWindow(data);
+                       Edit.AddToFriendWindow(names, Count);
 
                     }
 

@@ -31,9 +31,9 @@ namespace Client.QueueIn
 
      
 
-        public void AddToFriendWindow(String message)
+        public void AddToFriendWindow(List<String> Names, int count)
         {
-           UI.GUIinstance.AddToFriendWindow(message);
+           UI.GUIinstance.AddToFriendWindow(Names, count);
         }
 
         public void Login()

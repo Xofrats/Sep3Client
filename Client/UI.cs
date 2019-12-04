@@ -16,6 +16,10 @@ namespace Client
         ServerFunctions ServerFunctions = new ServerFunctions();
         //Kan gemme UIen i sig selv
         public static UI GUIinstance;
+        public int NumberOfFriends { get; set; }
+        public List<String> NamesOfFriends { get; set; }
+
+
 
         public UI()
         {
@@ -23,8 +27,14 @@ namespace Client
             InitializeComponent();
             // gemmer sig selv
            GUIinstance = this;
-          
+            HiddenFriends.FlatStyle = FlatStyle.Flat;
+            HiddenFriends.FlatAppearance.BorderColor = BackColor;
+            HiddenFriends.FlatAppearance.MouseOverBackColor = BackColor;
+            HiddenFriends.FlatAppearance.MouseDownBackColor = BackColor;
+
         }
+
+       
 
         private void GetFriends(object sender, EventArgs e)
         {
@@ -138,42 +148,39 @@ namespace Client
             
         }
 
-        public void AddToFriendWindow(String text)
+        public void AddToFriendWindow(List<String> Names, int Count)
         {
-
-            if (TbFriends.InvokeRequired)
-            {
-                SetTextCallback d = new SetTextCallback(AddToFriendWindow);
-                TbFriends.Invoke(d, new object[] { TbFriends.Text + text + Environment.NewLine });
+            NumberOfFriends = Count;
+            NamesOfFriends = Names;
+            if (TbChatWindow.InvokeRequired)
+            {  
+                TbChatWindow.Invoke(new Action(() => { HiddenFriends.PerformClick(); }));
             }
-            else
-            {
-                this.TbFriends.Text = text;
-            }
+          
 
         }
 
 
-        public void ChangeFriendWindow(String text, int count)
-        {
-            for (int i = 0; i < count; i++)
-            {
-                Button btn = new Button();
-                btn.Location = new Point(0, i * 25);
-                TbFriends.Controls.Add(btn);
-            }
-        }
+       
 
         private void BTNtest_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < NumberOfFriends; i++)
             {
                 Button btn = new Button();
                 btn.Location = new Point(0, i * 25);
+                btn.Name = NamesOfFriends[i];
+                btn.Text = NamesOfFriends[i];
+                btn.Click += new EventHandler(Start_Chat);
+
                 TbFriends.Controls.Add(btn);
             }
+        }
 
-
+        private void Start_Chat(object sender, EventArgs e)
+        {
+            ChatWindow chatWindow = new ChatWindow((sender as Button).Text);
+            chatWindow.Show();
         }
 
         public void ChangeGetAllFriendList(String text)

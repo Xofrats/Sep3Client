@@ -43,7 +43,7 @@ namespace Client
             this.btnReject = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxAllRequest = new System.Windows.Forms.TextBox();
-            this.test = new System.Windows.Forms.Button();
+            this.HiddenFriends = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // BtnSendMessage
@@ -89,7 +89,7 @@ namespace Client
             // BtnFriends
             // 
             this.BtnFriends.Location = new System.Drawing.Point(596, 363);
-            this.BtnFriends.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnFriends.Margin = new System.Windows.Forms.Padding(4);
             this.BtnFriends.Name = "BtnFriends";
             this.BtnFriends.Size = new System.Drawing.Size(195, 28);
             this.BtnFriends.TabIndex = 4;
@@ -100,7 +100,7 @@ namespace Client
             // btnAddFriend
             // 
             this.btnAddFriend.Location = new System.Drawing.Point(595, 464);
-            this.btnAddFriend.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddFriend.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddFriend.Name = "btnAddFriend";
             this.btnAddFriend.Size = new System.Drawing.Size(87, 28);
             this.btnAddFriend.TabIndex = 5;
@@ -111,7 +111,7 @@ namespace Client
             // btnDeleteFriend
             // 
             this.btnDeleteFriend.Location = new System.Drawing.Point(691, 464);
-            this.btnDeleteFriend.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDeleteFriend.Margin = new System.Windows.Forms.Padding(4);
             this.btnDeleteFriend.Name = "btnDeleteFriend";
             this.btnDeleteFriend.Size = new System.Drawing.Size(100, 28);
             this.btnDeleteFriend.TabIndex = 6;
@@ -122,7 +122,7 @@ namespace Client
             // textBoxUsername
             // 
             this.textBoxUsername.Location = new System.Drawing.Point(595, 432);
-            this.textBoxUsername.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxUsername.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxUsername.Name = "textBoxUsername";
             this.textBoxUsername.Size = new System.Drawing.Size(193, 22);
             this.textBoxUsername.TabIndex = 7;
@@ -150,7 +150,7 @@ namespace Client
             // textBoxFriendRequest
             // 
             this.textBoxFriendRequest.Location = new System.Drawing.Point(595, 548);
-            this.textBoxFriendRequest.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxFriendRequest.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxFriendRequest.Name = "textBoxFriendRequest";
             this.textBoxFriendRequest.Size = new System.Drawing.Size(195, 22);
             this.textBoxFriendRequest.TabIndex = 9;
@@ -158,7 +158,7 @@ namespace Client
             // btnAccept
             // 
             this.btnAccept.Location = new System.Drawing.Point(595, 580);
-            this.btnAccept.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAccept.Margin = new System.Windows.Forms.Padding(4);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(87, 28);
             this.btnAccept.TabIndex = 10;
@@ -169,7 +169,7 @@ namespace Client
             // btnReject
             // 
             this.btnReject.Location = new System.Drawing.Point(691, 580);
-            this.btnReject.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnReject.Margin = new System.Windows.Forms.Padding(4);
             this.btnReject.Name = "btnReject";
             this.btnReject.Size = new System.Drawing.Size(100, 28);
             this.btnReject.TabIndex = 11;
@@ -190,28 +190,27 @@ namespace Client
             // textBoxAllRequest
             // 
             this.textBoxAllRequest.Location = new System.Drawing.Point(404, 492);
-            this.textBoxAllRequest.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxAllRequest.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxAllRequest.Multiline = true;
             this.textBoxAllRequest.Name = "textBoxAllRequest";
             this.textBoxAllRequest.Size = new System.Drawing.Size(165, 115);
             this.textBoxAllRequest.TabIndex = 13;
             // 
-            // test
+            // HiddenFriends
             // 
-            this.test.Location = new System.Drawing.Point(50, 468);
-            this.test.Name = "test";
-            this.test.Size = new System.Drawing.Size(75, 23);
-            this.test.TabIndex = 14;
-            this.test.Text = "test";
-            this.test.UseVisualStyleBackColor = true;
-            this.test.Click += new System.EventHandler(this.BTNtest_Click);
+            this.HiddenFriends.Location = new System.Drawing.Point(50, 468);
+            this.HiddenFriends.Name = "HiddenFriends";
+            this.HiddenFriends.Size = new System.Drawing.Size(75, 23);
+            this.HiddenFriends.TabIndex = 14;
+            this.HiddenFriends.UseVisualStyleBackColor = true;
+            this.HiddenFriends.Click += new System.EventHandler(this.BTNtest_Click);
             // 
             // UI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(816, 644);
-            this.Controls.Add(this.test);
+            this.Controls.Add(this.HiddenFriends);
             this.Controls.Add(this.textBoxAllRequest);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnReject);
@@ -252,6 +251,6 @@ namespace Client
     private System.Windows.Forms.Button btnReject;
     private System.Windows.Forms.Label label3;
     private System.Windows.Forms.TextBox textBoxAllRequest;
-        private System.Windows.Forms.Button test;
+        private System.Windows.Forms.Button HiddenFriends;
     }
 }
