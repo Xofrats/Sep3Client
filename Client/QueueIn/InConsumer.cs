@@ -29,17 +29,17 @@ namespace Client.QueueIn
                         
                     }
 
-                    if (String.Equals((String)fromServer.function, "alleVenner"))
-                    {
-                        Console.WriteLine("got all friends");
-                        String data = "";
-                        foreach (var ven in fromServer.data)
-                        {
-                            data += (String)ven + Environment.NewLine;
-                        }
-                        Edit.AddToFriendWindow(data);
+                    //if (String.Equals((String)fromServer.function, "alleVenner"))
+                    //{
+                    //    Console.WriteLine("got all friends");
+                    //    String data = "";
+                    //    foreach (var ven in fromServer.data)
+                    //    {
+                    //        data += (String)ven + Environment.NewLine;
+                    //    }
+                    //    Edit.AddToFriendWindow(data);
 
-                    }
+                    //}
 
                     if (String.Equals((String)fromServer.function, "Login"))
                     {
@@ -49,29 +49,37 @@ namespace Client.QueueIn
 
                     }
 
-                    if (String.Equals((String)test.function, "friendList"))
+                    if (String.Equals((String)fromServer.function, "friendList"))
                     {
                         String data = "";
-                        foreach (string request in test.FriendRequest)
+                        foreach (string request in fromServer.FriendRequest)
                         {
                           data += request + Environment.NewLine;
                         }
                         Edit.GetAllFriendRequest(data);
 
-                        String first = "";
-                        foreach (string oneRequest in test.FriendRequest)
+                        List<String> first = new List<string>();
+                        foreach (string request in fromServer.FriendRequest)
                         {
-                          first += oneRequest.First();
+                          first.Add(request);
                         }
-                        Edit.GetOneFriendRequest(first);
+                        Edit.GetOneFriendRequest(first[0]);
 
                     }
 
-                    if (String.Equals((String)test.accepted, "Friend added"))
+                    if (String.Equals((String)fromServer.function, "MyFriendRequest"))
                     {
-                                String data = test.accepted;
-                                Edit.AcceptFriendRequest(data);
+                      Edit.CheckOnFriendRequest((String)fromServer.SendFriendRequest);
+                    }
 
+                    if (String.Equals((String)fromServer.function, "newFriend"))
+                    {
+                      Edit.AddFriendWindow((String)fromServer.accepted);
+                    }
+
+                    if (String.Equals((String)fromServer.function, "UserRejected"))
+                    {
+                      Edit.AddFriendWindow((String)fromServer.RejectUser);
                     }
                 }
             }

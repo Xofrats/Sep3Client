@@ -43,14 +43,18 @@ namespace Client
 			this.btnReject = new System.Windows.Forms.Button();
 			this.label3 = new System.Windows.Forms.Label();
 			this.textBoxAllRequest = new System.Windows.Forms.TextBox();
+			this.btnGetFriendRequest = new System.Windows.Forms.Button();
+			this.textBoxStatus = new System.Windows.Forms.TextBox();
+			this.label4 = new System.Windows.Forms.Label();
+			this.btnSendFile = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// BtnSendMessage
 			// 
 			this.BtnSendMessage.Location = new System.Drawing.Point(328, 294);
-			this.BtnSendMessage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.BtnSendMessage.Margin = new System.Windows.Forms.Padding(2);
 			this.BtnSendMessage.Name = "BtnSendMessage";
-			this.BtnSendMessage.Size = new System.Drawing.Size(56, 19);
+			this.BtnSendMessage.Size = new System.Drawing.Size(56, 24);
 			this.BtnSendMessage.TabIndex = 0;
 			this.BtnSendMessage.Text = "Send";
 			this.BtnSendMessage.UseVisualStyleBackColor = true;
@@ -59,16 +63,16 @@ namespace Client
 			// TextBoxMessage
 			// 
 			this.TextBoxMessage.Location = new System.Drawing.Point(28, 295);
-			this.TextBoxMessage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.TextBoxMessage.Margin = new System.Windows.Forms.Padding(2);
 			this.TextBoxMessage.Multiline = true;
 			this.TextBoxMessage.Name = "TextBoxMessage";
-			this.TextBoxMessage.Size = new System.Drawing.Size(296, 43);
+			this.TextBoxMessage.Size = new System.Drawing.Size(296, 53);
 			this.TextBoxMessage.TabIndex = 1;
 			// 
 			// TbChatWindow
 			// 
 			this.TbChatWindow.Location = new System.Drawing.Point(28, 43);
-			this.TbChatWindow.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.TbChatWindow.Margin = new System.Windows.Forms.Padding(2);
 			this.TbChatWindow.Multiline = true;
 			this.TbChatWindow.Name = "TbChatWindow";
 			this.TbChatWindow.ReadOnly = true;
@@ -78,7 +82,7 @@ namespace Client
 			// TbFriends
 			// 
 			this.TbFriends.Location = new System.Drawing.Point(446, 43);
-			this.TbFriends.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.TbFriends.Margin = new System.Windows.Forms.Padding(2);
 			this.TbFriends.Multiline = true;
 			this.TbFriends.Name = "TbFriends";
 			this.TbFriends.ReadOnly = true;
@@ -142,14 +146,14 @@ namespace Client
 			// 
 			// textBoxFriendRequest
 			// 
-			this.textBoxFriendRequest.Location = new System.Drawing.Point(446, 445);
+			this.textBoxFriendRequest.Location = new System.Drawing.Point(159, 448);
 			this.textBoxFriendRequest.Name = "textBoxFriendRequest";
 			this.textBoxFriendRequest.Size = new System.Drawing.Size(147, 20);
 			this.textBoxFriendRequest.TabIndex = 9;
 			// 
 			// btnAccept
 			// 
-			this.btnAccept.Location = new System.Drawing.Point(446, 471);
+			this.btnAccept.Location = new System.Drawing.Point(159, 474);
 			this.btnAccept.Name = "btnAccept";
 			this.btnAccept.Size = new System.Drawing.Size(65, 23);
 			this.btnAccept.TabIndex = 10;
@@ -159,7 +163,7 @@ namespace Client
 			// 
 			// btnReject
 			// 
-			this.btnReject.Location = new System.Drawing.Point(518, 471);
+			this.btnReject.Location = new System.Drawing.Point(231, 474);
 			this.btnReject.Name = "btnReject";
 			this.btnReject.Size = new System.Drawing.Size(75, 23);
 			this.btnReject.TabIndex = 11;
@@ -170,7 +174,7 @@ namespace Client
 			// label3
 			// 
 			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(467, 429);
+			this.label3.Location = new System.Drawing.Point(186, 426);
 			this.label3.Name = "label3";
 			this.label3.Size = new System.Drawing.Size(100, 13);
 			this.label3.TabIndex = 12;
@@ -178,17 +182,59 @@ namespace Client
 			// 
 			// textBoxAllRequest
 			// 
-			this.textBoxAllRequest.Location = new System.Drawing.Point(303, 400);
+			this.textBoxAllRequest.Location = new System.Drawing.Point(28, 426);
 			this.textBoxAllRequest.Multiline = true;
 			this.textBoxAllRequest.Name = "textBoxAllRequest";
-			this.textBoxAllRequest.Size = new System.Drawing.Size(125, 94);
+			this.textBoxAllRequest.ReadOnly = true;
+			this.textBoxAllRequest.Size = new System.Drawing.Size(125, 88);
 			this.textBoxAllRequest.TabIndex = 13;
+			// 
+			// btnGetFriendRequest
+			// 
+			this.btnGetFriendRequest.Location = new System.Drawing.Point(28, 521);
+			this.btnGetFriendRequest.Name = "btnGetFriendRequest";
+			this.btnGetFriendRequest.Size = new System.Drawing.Size(125, 23);
+			this.btnGetFriendRequest.TabIndex = 14;
+			this.btnGetFriendRequest.Text = "Get Friend Request";
+			this.btnGetFriendRequest.UseVisualStyleBackColor = true;
+			this.btnGetFriendRequest.Click += new System.EventHandler(this.btnGetFriendRequest_Click);
+			// 
+			// textBoxStatus
+			// 
+			this.textBoxStatus.Location = new System.Drawing.Point(159, 524);
+			this.textBoxStatus.Name = "textBoxStatus";
+			this.textBoxStatus.ReadOnly = true;
+			this.textBoxStatus.Size = new System.Drawing.Size(146, 20);
+			this.textBoxStatus.TabIndex = 15;
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(209, 508);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(37, 13);
+			this.label4.TabIndex = 16;
+			this.label4.Text = "Status";
+			// 
+			// btnSendFile
+			// 
+			this.btnSendFile.Location = new System.Drawing.Point(328, 323);
+			this.btnSendFile.Name = "btnSendFile";
+			this.btnSendFile.Size = new System.Drawing.Size(56, 25);
+			this.btnSendFile.TabIndex = 17;
+			this.btnSendFile.Text = "Send file";
+			this.btnSendFile.UseVisualStyleBackColor = true;
+			this.btnSendFile.Click += new System.EventHandler(this.btnSendFile_Click);
 			// 
 			// UI
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(612, 523);
+			this.ClientSize = new System.Drawing.Size(606, 556);
+			this.Controls.Add(this.btnSendFile);
+			this.Controls.Add(this.label4);
+			this.Controls.Add(this.textBoxStatus);
+			this.Controls.Add(this.btnGetFriendRequest);
 			this.Controls.Add(this.textBoxAllRequest);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.btnReject);
@@ -204,7 +250,7 @@ namespace Client
 			this.Controls.Add(this.TbChatWindow);
 			this.Controls.Add(this.TextBoxMessage);
 			this.Controls.Add(this.BtnSendMessage);
-			this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+			this.Margin = new System.Windows.Forms.Padding(2);
 			this.Name = "UI";
 			this.Text = "UI";
 			this.ResumeLayout(false);
@@ -229,5 +275,9 @@ namespace Client
     private System.Windows.Forms.Button btnReject;
     private System.Windows.Forms.Label label3;
     private System.Windows.Forms.TextBox textBoxAllRequest;
+    private System.Windows.Forms.Button btnGetFriendRequest;
+    private System.Windows.Forms.TextBox textBoxStatus;
+    private System.Windows.Forms.Label label4;
+    private System.Windows.Forms.Button btnSendFile;
   }
 }

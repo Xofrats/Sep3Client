@@ -1,4 +1,4 @@
-﻿using Client.QueueIn;
+using Client.QueueIn;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,7 +31,7 @@ namespace Client
         {
             UiOpretbruger m = new UiOpretbruger();
             m.Show();
-            this.hide(Form1);
+            this.Hide();
 
 
         }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -34,7 +34,6 @@ namespace Client
             {
                 Password = input2,
                 Username = input1,
-                Email = input,
                 Function = "create user"
             };
 

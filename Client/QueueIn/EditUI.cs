@@ -29,17 +29,17 @@ namespace Client.QueueIn
       UI.GUIinstance.ChangeOneFriendList(message);
     }
 
-        public void AddToChatWindow(String message)
-        {
-           UI.GUIinstance.ChangeChatWindow(message);
-        }
+    public void CheckOnFriendRequest(String message)
+    {
+      UI.GUIinstance.ChangeMyFriendRequest(message);
+    }
 
-        public void AddToFriendWindow(String message)
-        {
-           UI.GUIinstance.ChangeFriendWindow(message);
-        }
+    public void AddFriendWindow(String message)
+    {
+       UI.GUIinstance.ChangeFriendRequest(message);
+    }
 
-        public void Login()
+    public void Login()
         {
             Form1.GUIinstance.LoginToChat();
         }
