@@ -1,3 +1,4 @@
+using Client.Chat;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,15 +9,21 @@ namespace Client.QueueIn
 {
     class EditUI
     {
+        
        
     public EditUI()
     {
-
     }
 
-    public void AddToChatWindow(String message)
+    public void AddToChatWindow(String FromUsername, String Message)
     {
-      UI.GUIinstance.ChangeChatWindow(message);
+            GuiCollection AllGUIs = GuiCollection.GetCollectionsInstance;
+            ChatWindow Chat = AllGUIs.GetGUI(FromUsername);
+            Chat.ChangeChatWindow(Message);
+
+
+
+
     }
 
     public void GetAllFriendRequest(String message)
@@ -34,10 +41,10 @@ namespace Client.QueueIn
       UI.GUIinstance.ChangeMyFriendRequest(message);
     }
 
-    public void AddFriendWindow(String message)
-    {
-       UI.GUIinstance.ChangeFriendRequest(message);
-    }
+        public void AddToFriendWindow(List<String> Names, int count)
+        {
+           UI.GUIinstance.AddToFriendWindow(Names, count);
+        }
 
     public void Login()
         {

@@ -25,19 +25,22 @@ namespace Client.QueueIn
                     if (String.Equals((String)fromServer.function, "chat"))
                     {
                         Console.WriteLine("Adding to chat window");
-                        Edit.AddToChatWindow((String)fromServer.username + "wrote: " + (String)fromServer.data);
+
+                        Edit.AddToChatWindow((String)fromServer.username,(String)fromServer.username + " wrote: " + (String)fromServer.data);
                         
                     }
 
-                    //if (String.Equals((String)fromServer.function, "alleVenner"))
-                    //{
-                    //    Console.WriteLine("got all friends");
-                    //    String data = "";
-                    //    foreach (var ven in fromServer.data)
-                    //    {
-                    //        data += (String)ven + Environment.NewLine;
-                    //    }
-                    //    Edit.AddToFriendWindow(data);
+                    if (String.Equals((String)fromServer.function, "alleVenner"))
+                    {
+                        Console.WriteLine("got all friends");
+                        List<String> names = new List<string>();
+                        int Count = 0;
+                        foreach (var ven in fromServer.data)
+                        {
+                            names.Add((String)ven);
+                            Count++;
+                        }
+                       Edit.AddToFriendWindow(names, Count);
 
                     //}
 

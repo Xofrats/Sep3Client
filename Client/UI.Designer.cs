@@ -259,10 +259,6 @@ namespace Client
         }
 
         #endregion
-
-        private System.Windows.Forms.Button BtnSendMessage;
-        private System.Windows.Forms.TextBox TextBoxMessage;
-        private System.Windows.Forms.TextBox TbChatWindow;
         private System.Windows.Forms.TextBox TbFriends;
         private System.Windows.Forms.Button BtnFriends;
     private System.Windows.Forms.Button btnAddFriend;
@@ -280,4 +276,6 @@ namespace Client
     private System.Windows.Forms.Label label4;
     private System.Windows.Forms.Button btnSendFile;
   }
+        private System.Windows.Forms.Button HiddenFriends;
+    }
 }

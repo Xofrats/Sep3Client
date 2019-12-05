@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Security;
+using System.Drawing;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -17,6 +18,11 @@ namespace Client
         ServerFunctions ServerFunctions = new ServerFunctions();
         //Kan gemme UIen i sig selv
         public static UI GUIinstance;
+        public int NumberOfFriends { get; set; }
+        public List<String> NamesOfFriends { get; set; }
+        delegate void SetTextCallback(string text);
+
+
 
         public UI()
         {
@@ -24,8 +30,14 @@ namespace Client
             InitializeComponent();
             // gemmer sig selv
            GUIinstance = this;
-          
+            HiddenFriends.FlatStyle = FlatStyle.Flat;
+            HiddenFriends.FlatAppearance.BorderColor = BackColor;
+            HiddenFriends.FlatAppearance.MouseOverBackColor = BackColor;
+            HiddenFriends.FlatAppearance.MouseDownBackColor = BackColor;
+
         }
+
+       
 
         private void GetFriends(object sender, EventArgs e)
         {
@@ -39,13 +51,7 @@ namespace Client
             ServerFunctions.AddToQueue(JsonObject);
         }
 
-        private void WriteToServer(object sender, EventArgs e)
-        {
-            //Tager teksten fra textbox message
-            string input = TextBoxMessage.Text;
-
-            //tømmer textbox
-            TextBoxMessage.Clear();
+      
 
             //Laver json objekt
             Message JsonObject = new Message
@@ -94,31 +100,35 @@ namespace Client
       //tømmer textbox
       textBoxUsername.Clear();
 
-      //Laver json objekt
-      Message JsonObject = new Message();
-      JsonObject.Username = input;
-      JsonObject.Function = "Add friend";
+            //Laver json objekt
+            Message JsonObject = new Message
+            {
+                Username = input,
+                Function = "Add friend"
+            };
 
       //Objektet tager ServerFunctions sig af
       ServerFunctions.AddToQueue(JsonObject);
     }
 
-    private void textBoxUsername_Click(object sender, EventArgs e)
+    private void TextBoxUsername_Click(object sender, EventArgs e)
     {
       textBoxUsername.Clear();
     }
 
-    private void btnAccept_Click(object sender, EventArgs e)
+    private void BtnAccept_Click(object sender, EventArgs e)
     {
       //Tager teksten fra textbox message
       string input = textBoxFriendRequest.Text;
       //tømmer textbox
       textBoxFriendRequest.Clear();
 
-      //Laver json objekt
-      Message JsonObject = new Message();
-      JsonObject.Username = input;
-      JsonObject.Function = "Accepted";
+            //Laver json objekt
+            Message JsonObject = new Message
+            {
+                Username = input,
+                Function = "Accepted"
+            };
 
       ServerFunctions.AddToQueue(JsonObject);
     }
@@ -145,11 +155,13 @@ namespace Client
       //tømmer textbox
       textBoxUsername.Clear();
 
-      //Laver json objekt
-      Message JsonObject = new Message();
-      JsonObject.Username = input;
-      JsonObject.Function = "Delete friend";
-      
+            //Laver json objekt
+            Message JsonObject = new Message
+            {
+                Username = input,
+                Function = "Delete friend"
+            };
+
 
 
       textBoxFriendRequest.Text += input + Environment.NewLine;
@@ -164,21 +176,45 @@ namespace Client
       ServerFunctions.AddToQueue(JsonObject);
     }
 
-    delegate void SetTextCallback(string text);
+        
 
-    public void ChangeChatWindow(String text)
+ 
+
+        public void AddToFriendWindow(List<String> Names, int Count)
         {
-            
-            if (TbChatWindow.InvokeRequired)
+            NumberOfFriends = Count;
+            NamesOfFriends = Names;
+            if (TbFriends.InvokeRequired)
             {
-                SetTextCallback d = new SetTextCallback(ChangeChatWindow);
-                TbChatWindow.Invoke(d, new object[] { TbChatWindow.Text + text + Environment.NewLine });
+                TbFriends.Invoke(new Action(() => { HiddenFriends.PerformClick(); }));
             }
-            else
+          
+
+        }
+
+
+       
+
+        private void BTNtest_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < NumberOfFriends; i++)
             {
-                this.TbChatWindow.Text = text;
+                Button btn = new Button
+                {
+                    Location = new Point(0, i * 25),
+                    Name = NamesOfFriends[i],
+                    Text = NamesOfFriends[i]
+                };
+                btn.Click += new EventHandler(Start_Chat);
+
+                TbFriends.Controls.Add(btn);
             }
-            
+        }
+
+        private void Start_Chat(object sender, EventArgs e)
+        {
+            ChatWindow chatWindow = new ChatWindow((sender as Button).Text);
+            chatWindow.Show();
         }
 
     public void ChangeGetAllFriendList(String text)
