@@ -20,6 +20,7 @@ namespace Client
         public TcpClient TCPClient { get; set; }
         public NetworkStream Network { get; set; }
 
+
         private static Client instance = null;
 
 

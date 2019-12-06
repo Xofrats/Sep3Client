@@ -1,12 +1,6 @@
 ﻿using Client.Chat;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Client
@@ -15,20 +9,38 @@ namespace Client
     {
         public new String Name { get; set; }
         ServerFunctions Server = new ServerFunctions();
-      
+        GuiCollection AllGUIs = GuiCollection.GetCollectionsInstance;
+
         delegate void SetTextCallback(string text);
 
         public ChatWindow(String NewName)
         {
             InitializeComponent();
             Name = NewName;
+            AllGUIs.AddGUI(NewName, this);
             Console.WriteLine(Name);
             TbChatTitle.Text = "Chat with " + Name;
-            GuiCollection AllGUIs = GuiCollection.GetCollectionsInstance;
-            AllGUIs.AddGUI(Name, this);
+            
+            
+            GetChatLog();
 
 
+        }
 
+
+        public void GetChatLog()
+        {
+            Message JsonObject = new Message
+            {
+               
+                Function = "Get Chatlog",
+                Username = Name,
+                Count = 2
+              
+            };
+
+            //Objektet tager ServerFunctions sig af
+            Server.AddToQueue(JsonObject);
         }
 
         private void SendChat(object sender, EventArgs e)
@@ -68,5 +80,7 @@ namespace Client
             }
 
         }
+
+       
     }
 }

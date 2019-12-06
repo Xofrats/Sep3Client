@@ -219,6 +219,17 @@ namespace Client
 
         }
 
-       
+        private void Get_Chatlogs(object sender, EventArgs e)
+        {
+            
+
+            //Laver json objekt
+            Message JsonObject = new Message
+            {
+                Function = "Get Chatlog"
+            };
+ 
+            ServerFunctions.AddToQueue(JsonObject);
+        }
     }
 }

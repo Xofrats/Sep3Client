@@ -9,24 +9,29 @@ namespace Client.QueueIn
 {
     class EditUI
     {
-        
-       
-    public EditUI()
+        GuiCollection AllGUIs = GuiCollection.GetCollectionsInstance;
+
+        public EditUI()
     {
     }
 
     public void AddToChatWindow(String FromUsername, String Message)
     {
-            GuiCollection AllGUIs = GuiCollection.GetCollectionsInstance;
             ChatWindow Chat = AllGUIs.GetGUI(FromUsername);
             Chat.ChangeChatWindow(Message);
-
-
-
-
     }
 
-    public void GetAllFriendRequest(String message)
+        public void AddingChatlogs(List<String> ChatLogs, String Username)
+        {
+            ChatWindow Chat = AllGUIs.GetGUI(Username);
+
+            foreach (String log in ChatLogs)
+            {
+                Chat.ChangeChatWindow(log);
+            }
+        }
+
+        public void GetAllFriendRequest(String message)
     {
       UI.GUIinstance.ChangeAllFriendList(message);
     }

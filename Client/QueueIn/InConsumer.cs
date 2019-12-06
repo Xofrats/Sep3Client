@@ -1,3 +1,4 @@
+using Client.Chat;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -74,6 +75,19 @@ namespace Client.QueueIn
                     {
                                 String data = fromServer.accepted;
                                // Edit.AcceptFriendRequest(data);
+
+                    }
+
+                    if (String.Equals((String)fromServer.function, "ChatLogs"))
+                    {
+                        Console.WriteLine("got chatlogs");
+                        List<String> Chatlogs = new List<String>();
+                        foreach (string log in fromServer.Log)
+                        {
+                            Chatlogs.Add(log);
+                        }
+
+                        Edit.AddingChatlogs(Chatlogs, (String)fromServer.Username);
 
                     }
                 }
