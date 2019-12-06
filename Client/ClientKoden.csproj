@@ -55,6 +55,12 @@
       <DependentUpon>ChatWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Chat\GuiCollection.cs" />
+    <Compile Include="GruppeChat\UIGrupper.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GruppeChat\UIGrupper.Designer.cs">
+      <DependentUpon>UIGrupper.cs</DependentUpon>
+    </Compile>
     <Compile Include="UILogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +99,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Chat\ChatWindow.resx">
       <DependentUpon>ChatWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GruppeChat\UIGrupper.resx">
+      <DependentUpon>UIGrupper.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UILogin.resx">
       <DependentUpon>UILogin.cs</DependentUpon>
