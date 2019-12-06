@@ -51,48 +51,6 @@ namespace Client
             ServerFunctions.AddToQueue(JsonObject);
         }
 
-      
-
-            //Laver json objekt
-            Message JsonObject = new Message
-            {
-                Chat = input,
-                Function = "Chat",
-                Username = "Sitch"
-            };
-
-            //Objektet tager ServerFunctions sig af
-            ServerFunctions.AddToQueue(JsonObject);
-            TbChatWindow.Text += input + Environment.NewLine;
-        }
-        private void btnSendFile_Click(object sender, EventArgs e)
-        {
-          OpenFileDialog openFile = new OpenFileDialog();
-
-          if (openFile.ShowDialog() == DialogResult.OK)
-          {
-            try
-            {
-              if (openFile.FileName != null)
-              {
-                string readFile = File.ReadAllText(openFile.FileName);
-                Message JsonObject = new Message();
-                JsonObject.File = readFile;
-                JsonObject.Function = "Send file";
-
-                //Objektet tager ServerFunctions sig af
-                ServerFunctions.AddToQueue(JsonObject);
-          }
-            }
-            catch (SecurityException ex)
-            {
-              MessageBox.Show("Error: Could not read file from disk. Original error: " +
-                ex.Message);
-              throw;
-            }
-          }
-        }
-
     private void btnAddFriend_Click(object sender, EventArgs e)
     {
       //Tager teksten fra textbox message

@@ -1,10 +1,12 @@
-﻿using Client.Chat;
+using Client.Chat;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -54,7 +56,39 @@ namespace Client
             
         }
 
-        public void ChangeChatWindow(String text)
+        private void btnSendFile_Click(object sender, EventArgs e)
+        {
+          OpenFileDialog openFile = new OpenFileDialog();
+
+          if (openFile.ShowDialog() == DialogResult.OK)
+          {
+            try
+            {
+              if (openFile.FileName != null)
+              {
+                string readFile = File.ReadAllText(openFile.FileName);
+                string fileName = Path.GetFileName(openFile.FileName);
+                Message JsonObject = new Message();
+                JsonObject.fileName = fileName;
+                JsonObject.Chat = readFile;
+                JsonObject.Username = Name;
+                JsonObject.Function = "Send file";
+
+                //Objektet tager ServerFunctions sig af
+                Server.AddToQueue(JsonObject);
+                TbMessage.Text += fileName + Environment.NewLine;
+              }
+            }
+            catch (SecurityException ex)
+            {
+              MessageBox.Show("Error: Could not read file from disk. Original error: " +
+                ex.Message);
+              throw;
+            }
+          }
+        }
+
+    public void ChangeChatWindow(String text)
         {
 
             if (TbChatWindow.InvokeRequired)
@@ -68,5 +102,5 @@ namespace Client
             }
 
         }
-    }
+  }
 }
