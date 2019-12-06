@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +13,7 @@ namespace Client.QueueIn
         private Queue<dynamic> InFromServerQueue = InQueue.Instance.InFromServerQueue;
 
 
-        byte[] data = new byte[1024];
+        byte[] data = new byte[10000];
         String stringData;
 
        

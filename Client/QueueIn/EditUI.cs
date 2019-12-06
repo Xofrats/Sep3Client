@@ -41,10 +41,15 @@ namespace Client.QueueIn
       UI.GUIinstance.ChangeMyFriendRequest(message);
     }
 
-        public void AddToFriendWindow(List<String> Names, int count)
-        {
-           UI.GUIinstance.AddToFriendWindow(Names, count);
-        }
+    public void ChangeFriendRequest(String message)
+    {
+      UI.GUIinstance.ChangeFriendRequest(message);
+    }
+
+    public void AddToFriendWindow(List<String> Names, int count)
+      {
+        UI.GUIinstance.AddToFriendWindow(Names, count);
+      }
 
     public void Login()
         {
