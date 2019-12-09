@@ -262,3 +262,15 @@ namespace Client
         }
     }
 }
+
+        private void bntOpretGruppe(object sender, EventArgs e)
+        {
+            UIGrupper groupChatWindow = new UIGrupper((sender as Button).Text);
+            groupChatWindow.Show();
+
+
+        }
+
+        }
+    }
+
