@@ -260,8 +260,8 @@ namespace Client
  
             ServerFunctions.AddToQueue(JsonObject);
         }
-    }
-}
+    
+
 
         private void bntOpretGruppe(object sender, EventArgs e)
         {
@@ -271,6 +271,6 @@ namespace Client
 
         }
 
-        }
+        
     }
-
+}
