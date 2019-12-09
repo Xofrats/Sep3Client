@@ -2,6 +2,8 @@ using Client.QueueIn;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Security;
 using System.Drawing;
 using System.Text;
 using System.Threading;
@@ -49,9 +51,7 @@ namespace Client
             ServerFunctions.AddToQueue(JsonObject);
         }
 
-      
-
-            private void AddFriend_Click(object sender, EventArgs e)
+    private void btnAddFriend_Click(object sender, EventArgs e)
     {
       //Tager teksten fra textbox message
       string input = textBoxUsername.Text;
@@ -65,9 +65,8 @@ namespace Client
                 Function = "Add friend"
             };
 
-            //Objektet tager ServerFunctions sig af
-            ServerFunctions.AddToQueue(JsonObject);
-      textBoxUsername.Text += input;
+      //Objektet tager ServerFunctions sig af
+      ServerFunctions.AddToQueue(JsonObject);
     }
 
     private void TextBoxUsername_Click(object sender, EventArgs e)
@@ -89,13 +88,22 @@ namespace Client
                 Function = "Accepted"
             };
 
-            textBoxFriendRequest.Clear();
-
+      ServerFunctions.AddToQueue(JsonObject);
     }
 
     private void BtnReject_Click(object sender, EventArgs e)
     {
+      //Tager teksten fra textbox message
+      string input = textBoxFriendRequest.Text;
+      //tømmer textbox
+      textBoxFriendRequest.Clear();
 
+      //Laver json objekt
+      Message JsonObject = new Message();
+      JsonObject.Username = input;
+      JsonObject.Function = "Rejected";
+
+      ServerFunctions.AddToQueue(JsonObject);
     }
 
     private void BtnDeleteFriend_Click(object sender, EventArgs e)
@@ -114,10 +122,17 @@ namespace Client
 
 
 
-            textBoxFriendRequest.Text += input + Environment.NewLine;
-            ServerFunctions.AddToQueue(JsonObject);
+      textBoxFriendRequest.Text += input + Environment.NewLine;
+      ServerFunctions.AddToQueue(JsonObject);
 
-        }
+    }
+
+    private void btnGetFriendRequest_Click(object sender, EventArgs e)
+    {
+      Message JsonObject = new Message();
+      JsonObject.Function = "friend request";
+      ServerFunctions.AddToQueue(JsonObject);
+    }
 
         
 
@@ -160,20 +175,20 @@ namespace Client
             chatWindow.Show();
         }
 
-        public void ChangeGetAllFriendList(String text)
-        {
+    public void ChangeGetAllFriendList(String text)
+    {
 
-          if (textBoxAllRequest.InvokeRequired)
-          {
-            SetTextCallback d = new SetTextCallback(ChangeGetAllFriendList);
-            textBoxAllRequest.Invoke(d, new object[] { textBoxAllRequest.Text + text + Environment.NewLine });
-          }
-          else
-          {
-            this.textBoxAllRequest.Text = text;
-          }
+      if (textBoxAllRequest.InvokeRequired)
+      {
+        SetTextCallback d = new SetTextCallback(ChangeGetAllFriendList);
+        textBoxAllRequest.Invoke(d, new object[] { textBoxAllRequest.Text + text + Environment.NewLine });
+      }
+      else
+      {
+        this.textBoxAllRequest.Text = text;
+      }
 
-        }
+    }
 
     public void ChangeAllFriendList(String text)
     {
@@ -196,7 +211,7 @@ namespace Client
           if (textBoxFriendRequest.InvokeRequired)
           {
             SetTextCallback d = new SetTextCallback(ChangeOneFriendList);
-        textBoxFriendRequest.Invoke(d, new object[] { textBoxFriendRequest.Text + text + Environment.NewLine });
+            textBoxFriendRequest.Invoke(d, new object[] { textBoxFriendRequest.Text + text + Environment.NewLine });
           }
           else
           {
@@ -204,7 +219,33 @@ namespace Client
           }
         }
 
+    public void ChangeMyFriendRequest(String text)
+    {
+
+      if (textBoxUsername.InvokeRequired)
+      {
+        SetTextCallback d = new SetTextCallback(ChangeMyFriendRequest);
+        textBoxUsername.Invoke(d, new object[] { textBoxUsername.Text + text + Environment.NewLine });
+      }
+      else
+      {
+        this.textBoxUsername.Text = text;
+      }
+    }
+
     public void ChangeFriendRequest(String text)
+    {
+      if (textBoxStatus.InvokeRequired)
+      {
+        SetTextCallback d = new SetTextCallback(ChangeFriendRequest);
+        textBoxStatus.Invoke(d, new object[] { textBoxStatus.Text + text + Environment.NewLine });
+      }
+      else
+      {
+        this.textBoxStatus.Text = text;
+      }
+    }
+  }
         {
 
           if (textBoxFriendRequest.InvokeRequired)

@@ -1,4 +1,4 @@
-﻿using Client.QueueIn;
+using Client.QueueIn;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
