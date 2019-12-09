@@ -1,3 +1,4 @@
+using Client.Chat;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -98,6 +99,24 @@ namespace Client.QueueIn
               Edit.ChangeFriendRequest((String)fromServer.accepted);
             }
 
+                    }
+
+                    if (String.Equals((String)fromServer.function, "ChatLogs"))
+                    {
+                        Console.WriteLine("got chatlogs");
+                        List<String> Chatlogs = new List<String>();
+                        foreach (string log in fromServer.Log)
+                        {
+                            Chatlogs.Add(log);
+                        }
+
+                        Edit.AddingChatlogs(Chatlogs, (String)fromServer.Username);
+
+                    }
+                }
+            }
+        }
+    }
             if (String.Equals((String)fromServer.function, "UserRejected"))
             {
               Edit.ChangeFriendRequest((String)fromServer.RejectUser);

@@ -245,6 +245,35 @@ namespace Client
         this.textBoxStatus.Text = text;
       }
     }
+  }
+        {
+
+          if (textBoxFriendRequest.InvokeRequired)
+          {
+            SetTextCallback d = new SetTextCallback(ChangeFriendRequest);
+            textBoxFriendRequest.Invoke(d, new object[] { textBoxFriendRequest.Text + text + Environment.NewLine });
+          }
+          else
+          {
+            this.textBoxFriendRequest.Text = text;
+          }
+
+        }
+
+        private void Get_Chatlogs(object sender, EventArgs e)
+        {
+            
+
+            //Laver json objekt
+            Message JsonObject = new Message
+            {
+                Function = "Get Chatlog"
+            };
+ 
+            ServerFunctions.AddToQueue(JsonObject);
+        }
+    }
+}
 
         private void bntOpretGruppe(object sender, EventArgs e)
         {
