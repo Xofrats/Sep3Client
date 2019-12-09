@@ -13,6 +13,7 @@ namespace Client
         public String Username { get; set; }
         public String Password { get; set; }
         public String Email { get; set; }
+        public int Count { get; set; }
         public String File { get; set; }
         public String fileName { get; set; }
 
