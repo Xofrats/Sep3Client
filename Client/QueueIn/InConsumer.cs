@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -15,6 +16,7 @@ namespace Client.QueueIn
   {
     private Queue<dynamic> InFromServerQueue = InQueue.Instance.InFromServerQueue;
     EditUI Edit = new EditUI();
+    List<String> requestList = new List<string>();
 
     public void FromServer()
     {
@@ -26,7 +28,7 @@ namespace Client.QueueIn
             dynamic fromServer = InFromServerQueue.Dequeue();
             Console.WriteLine("function is: " + fromServer.function);
 
-            if (String.Equals((String)fromServer.function, "chat"))
+            if ((String)fromServer.function == "chat")
             {
               Console.WriteLine("Adding to chat window");
 
@@ -37,18 +39,17 @@ namespace Client.QueueIn
             if (String.Equals((String)fromServer.function, "Send file"))
             {
               Console.WriteLine("Adding to chat window");
-            
-              IFormatter formatter = new BinaryFormatter();
-              Stream stream = new FileStream(@"C:\Users\armin\Dropbox\UNI\3. semester\DNP1\dnpTest.txt", FileMode.Create, FileAccess.Write, FileShare.None);
-              formatter.Serialize(stream, fromServer.File);
-              stream.Close();
+
+              string str = (string)fromServer.File;
               string fileName = Path.GetFileName((String)fromServer.NameOfFile);
+              string path = $"C:\\Users\\{Environment.UserName}\\Downloads\\{fileName}";
+              File.WriteAllBytes(path, Encoding.ASCII.GetBytes(str));
 
               Edit.AddToChatWindow((String)fromServer.username, (String)fromServer.username + " wrote: " + fileName);
 
             }
 
-          if (String.Equals((String)fromServer.function, "alleVenner"))
+            if (String.Equals((String)fromServer.function, "alleVenner"))
             {
               Console.WriteLine("got all friends");
               List<String> names = new List<string>();
@@ -84,13 +85,18 @@ namespace Client.QueueIn
               {
                 first.Add(request);
               }
-              Edit.GetOneFriendRequest(first[0]);
+              Edit.GetOneFriendRequest(first.First());
 
             }
 
             if (String.Equals((String)fromServer.function, "MyFriendRequest"))
             {
               Edit.CheckOnFriendRequest((String)fromServer.SendFriendRequest);
+            }
+
+            if (String.Equals((String)fromServer.function, "UserDeleted"))
+            {
+              Edit.CheckOnFriendRequest((String)fromServer.DeleteUser);
             }
 
             if (String.Equals((String)fromServer.function, "newFriend"))

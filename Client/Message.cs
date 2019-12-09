@@ -5,6 +5,7 @@ using System;
 
 namespace Client
 {
+  [Serializable]
     class Message : ITranferable
     {
         public String Function { get; set; }

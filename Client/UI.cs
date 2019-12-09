@@ -77,7 +77,7 @@ namespace Client
     private void BtnAccept_Click(object sender, EventArgs e)
     {
       //Tager teksten fra textbox message
-      string input = textBoxFriendRequest.Text;
+      string input = textBoxFriendRequest.Text.Trim();
       //tømmer textbox
       textBoxFriendRequest.Clear();
 
@@ -93,8 +93,7 @@ namespace Client
 
     private void BtnReject_Click(object sender, EventArgs e)
     {
-      //Tager teksten fra textbox message
-      string input = textBoxFriendRequest.Text;
+      string input = textBoxFriendRequest.Text.Trim();
       //tømmer textbox
       textBoxFriendRequest.Clear();
 
@@ -113,18 +112,15 @@ namespace Client
       //tømmer textbox
       textBoxUsername.Clear();
 
-            //Laver json objekt
-            Message JsonObject = new Message
-            {
-                Username = input,
-                Function = "Delete friend"
-            };
+      //Laver json objekt
+      Message JsonObject = new Message
+      {
+        Username = input,
+        Function = "Delete friend"
+      };
 
-
-
-      textBoxFriendRequest.Text += input + Environment.NewLine;
+      //Objektet tager ServerFunctions sig af
       ServerFunctions.AddToQueue(JsonObject);
-
     }
 
     private void btnGetFriendRequest_Click(object sender, EventArgs e)
@@ -175,7 +171,7 @@ namespace Client
             chatWindow.Show();
         }
 
-    public void ChangeGetAllFriendList(String text)
+    public void ChangeGetAllFriendList(string text)
     {
 
       if (textBoxAllRequest.InvokeRequired)

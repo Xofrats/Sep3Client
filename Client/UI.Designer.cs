@@ -179,7 +179,7 @@ namespace Client
 			// 
 			this.HiddenFriends.Location = new System.Drawing.Point(12, 10);
 			this.HiddenFriends.Name = "HiddenFriends";
-			this.HiddenFriends.Size = new System.Drawing.Size(75, 10);
+			this.HiddenFriends.Size = new System.Drawing.Size(10, 10);
 			this.HiddenFriends.TabIndex = 17;
 			this.HiddenFriends.UseVisualStyleBackColor = true;
 			this.HiddenFriends.Click += new System.EventHandler(this.BTNtest_Click);
