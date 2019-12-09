@@ -30,11 +30,11 @@
         {
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.bntSendChat = new System.Windows.Forms.Button();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
-            this.richTextBox3 = new System.Windows.Forms.RichTextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.bntTilføj = new System.Windows.Forms.Button();
+            this.textBoxTilføj = new System.Windows.Forms.TextBox();
+            this.bntFjern = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // richTextBox1
@@ -54,14 +54,14 @@
             this.textBox1.Size = new System.Drawing.Size(609, 104);
             this.textBox1.TabIndex = 1;
             // 
-            // button1
+            // bntSendChat
             // 
-            this.button1.Location = new System.Drawing.Point(222, 712);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(195, 54);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Send";
-            this.button1.UseVisualStyleBackColor = true;
+            this.bntSendChat.Location = new System.Drawing.Point(222, 712);
+            this.bntSendChat.Name = "bntSendChat";
+            this.bntSendChat.Size = new System.Drawing.Size(195, 54);
+            this.bntSendChat.TabIndex = 2;
+            this.bntSendChat.Text = "Send";
+            this.bntSendChat.UseVisualStyleBackColor = true;
             // 
             // richTextBox2
             // 
@@ -72,43 +72,42 @@
             this.richTextBox2.TabIndex = 3;
             this.richTextBox2.Text = "";
             // 
-            // richTextBox3
+            // bntTilføj
             // 
-            this.richTextBox3.Location = new System.Drawing.Point(991, 22);
-            this.richTextBox3.Name = "richTextBox3";
-            this.richTextBox3.ReadOnly = true;
-            this.richTextBox3.Size = new System.Drawing.Size(241, 81);
-            this.richTextBox3.TabIndex = 4;
-            this.richTextBox3.Text = "";
+            this.bntTilføj.Location = new System.Drawing.Point(823, 710);
+            this.bntTilføj.Name = "bntTilføj";
+            this.bntTilføj.Size = new System.Drawing.Size(69, 56);
+            this.bntTilføj.TabIndex = 6;
+            this.bntTilføj.Text = "Tilføj";
+            this.bntTilføj.UseVisualStyleBackColor = true;
+            this.bntTilføj.Click += new System.EventHandler(this.BntTilføj_Click);
             // 
-            // button2
+            // textBoxTilføj
             // 
-            this.button2.Location = new System.Drawing.Point(733, 587);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(159, 54);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Fjern venner ->";
-            this.button2.UseVisualStyleBackColor = true;
+            this.textBoxTilføj.Location = new System.Drawing.Point(674, 664);
+            this.textBoxTilføj.Name = "textBoxTilføj";
+            this.textBoxTilføj.Size = new System.Drawing.Size(241, 22);
+            this.textBoxTilføj.TabIndex = 7;
             // 
-            // button3
+            // bntFjern
             // 
-            this.button3.Location = new System.Drawing.Point(1029, 587);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(159, 54);
-            this.button3.TabIndex = 6;
-            this.button3.Text = "<- Tilføj venner";
-            this.button3.UseVisualStyleBackColor = true;
+            this.bntFjern.Location = new System.Drawing.Point(674, 710);
+            this.bntFjern.Name = "bntFjern";
+            this.bntFjern.Size = new System.Drawing.Size(69, 56);
+            this.bntFjern.TabIndex = 8;
+            this.bntFjern.Text = "Fjern";
+            this.bntFjern.UseVisualStyleBackColor = true;
             // 
             // UIGrupper
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1291, 778);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.richTextBox3);
+            this.ClientSize = new System.Drawing.Size(967, 778);
+            this.Controls.Add(this.bntFjern);
+            this.Controls.Add(this.textBoxTilføj);
+            this.Controls.Add(this.bntTilføj);
             this.Controls.Add(this.richTextBox2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.bntSendChat);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.richTextBox1);
             this.Name = "UIGrupper";
@@ -122,10 +121,10 @@
 
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button bntSendChat;
         private System.Windows.Forms.RichTextBox richTextBox2;
-        private System.Windows.Forms.RichTextBox richTextBox3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button bntTilføj;
+        private System.Windows.Forms.TextBox textBoxTilføj;
+        private System.Windows.Forms.Button bntFjern;
     }
 }

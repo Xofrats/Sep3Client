@@ -12,9 +12,30 @@ namespace Client
 {
     public partial class UIGrupper : Form
     {
-        public UIGrupper()
+
+        //laver det objekt der har de funkioner UIen skal bruge
+        ServerFunctions ServerFunctions = new ServerFunctions();
+       
+        public UIGrupper(string text)
         {
             InitializeComponent();
         }
+
+        private void BntTilføj_Click(object sender, EventArgs e)
+        {
+            //Tager teksten fra textbox message
+            string input = textBoxTilføj.Text;
+            //tømmer textbox
+            textBoxTilføj.Clear();
+
+            //Laver json objekt
+            Message JsonObject = new Message
+            {
+                Username = input,
+                Function = "addGroupMemeber"
+                
+        };
+            ServerFunctions.AddToQueue(JsonObject);
     }
+    } 
 }
