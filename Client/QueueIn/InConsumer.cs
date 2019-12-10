@@ -37,7 +37,7 @@ namespace Client.QueueIn
 
             }
 
-            if (String.Equals((String)fromServer.function, "Send file"))
+            if ((String)fromServer.function == "Send file")
             {
               Console.WriteLine("Adding to chat window");
 
@@ -50,7 +50,7 @@ namespace Client.QueueIn
 
             }
 
-            if (String.Equals((String)fromServer.function, "alleVenner"))
+            if ((String)fromServer.function == "allFriends")
             {
               Console.WriteLine("got all friends");
               List<String> names = new List<string>();
@@ -64,70 +64,71 @@ namespace Client.QueueIn
 
             }
 
-            if (String.Equals((String)fromServer.function, "Login"))
+            if ((String)fromServer.function == "Login")
             {
-              Console.WriteLine("Logging in");
-
-              Edit.Login();
-
+                Edit.Login();
             }
 
-            if (String.Equals((String)fromServer.function, "friendList"))
+            if ((String)fromServer.function == "friendList")
             {
               String data = "";
+              List<String> first = new List<string>();
               foreach (string request in fromServer.FriendRequest)
               {
                 data += request + Environment.NewLine;
               }
               Edit.GetAllFriendRequest(data);
 
-              List<String> first = new List<string>();
-              foreach (string request in fromServer.FriendRequest)
-              {
-                first.Add(request);
-              }
-              Edit.GetOneFriendRequest(first.First());
+              //bool isEmpty = !first.Any();
+              //if (isEmpty)
+              //{
+              //  Edit.GetOneFriendRequest("You have no request");
+              //}
+              //else
+              //{
+                foreach(string request in fromServer.FriendRequest)
+                {
+                  first.Add(request);
+                }
+                Edit.GetOneFriendRequest(first.First());
+              //}
 
             }
 
-            if (String.Equals((String)fromServer.function, "MyFriendRequest"))
+            if ((String)fromServer.function == "MyFriendRequest")
             {
               Edit.CheckOnFriendRequest((String)fromServer.SendFriendRequest);
             }
 
-            if (String.Equals((String)fromServer.function, "UserDeleted"))
+            if ((String)fromServer.function == "UserDeleted")
             {
               Edit.CheckOnFriendRequest((String)fromServer.DeleteUser);
             }
 
-            if (String.Equals((String)fromServer.function, "newFriend"))
+            if ((String)fromServer.function == "newFriend")
             {
               Edit.ChangeFriendRequest((String)fromServer.accepted);
             }
 
-                    }
-
-                    if (String.Equals((String)fromServer.function, "ChatLogs"))
-                    {
-                        Console.WriteLine("got chatlogs");
-                        List<String> Chatlogs = new List<String>();
-                        foreach (string log in fromServer.Log)
-                        {
-                            Chatlogs.Add(log);
-                        }
-
-                        Edit.AddingChatlogs(Chatlogs, (String)fromServer.Username);
-
-                    }
-                }
-            }
-        }
-    }
-            if (String.Equals((String)fromServer.function, "UserRejected"))
+            if ((String)fromServer.function == "UserRejected")
             {
               Edit.ChangeFriendRequest((String)fromServer.RejectUser);
             }
-        }
+
+            if ((String)fromServer.function == "ChatLogs")
+            {
+              Console.WriteLine("got chatlogs");
+              List<String> Chatlogs = new List<String>();
+              foreach (string log in fromServer.Log)
+              {
+                Chatlogs.Add(log);
+              }
+
+              Edit.AddingChatlogs(Chatlogs, (String)fromServer.Username);
+
+            }
+
+        }        
       }
     }
   }

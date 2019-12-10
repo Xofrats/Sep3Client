@@ -69,7 +69,7 @@ namespace Client
 			// 
 			this.btnAddFriend.Location = new System.Drawing.Point(11, 366);
 			this.btnAddFriend.Name = "btnAddFriend";
-			this.btnAddFriend.Size = new System.Drawing.Size(65, 23);
+			this.btnAddFriend.Size = new System.Drawing.Size(75, 23);
 			this.btnAddFriend.TabIndex = 5;
 			this.btnAddFriend.Text = "Add";
 			this.btnAddFriend.UseVisualStyleBackColor = true;
@@ -77,7 +77,7 @@ namespace Client
 			// 
 			// btnDeleteFriend
 			// 
-			this.btnDeleteFriend.Location = new System.Drawing.Point(83, 366);
+			this.btnDeleteFriend.Location = new System.Drawing.Point(132, 366);
 			this.btnDeleteFriend.Name = "btnDeleteFriend";
 			this.btnDeleteFriend.Size = new System.Drawing.Size(75, 23);
 			this.btnDeleteFriend.TabIndex = 6;
@@ -89,9 +89,10 @@ namespace Client
 			// 
 			this.textBoxUsername.Location = new System.Drawing.Point(11, 340);
 			this.textBoxUsername.Name = "textBoxUsername";
-			this.textBoxUsername.Size = new System.Drawing.Size(146, 20);
+			this.textBoxUsername.Size = new System.Drawing.Size(196, 20);
 			this.textBoxUsername.TabIndex = 7;
 			this.textBoxUsername.Text = "Username";
+			this.textBoxUsername.Click += new System.EventHandler(this.TextBoxUsername_Click);
 			// 
 			// label2
 			// 
@@ -188,7 +189,7 @@ namespace Client
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(317, 565);
+			this.ClientSize = new System.Drawing.Size(298, 565);
 			this.Controls.Add(this.HiddenFriends);
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.textBoxStatus);

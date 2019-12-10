@@ -43,7 +43,7 @@ namespace Client
                
                 Function = "Get Chatlog",
                 Username = Name,
-                Count = 2
+                Count = 3
               
             };
 
@@ -99,8 +99,7 @@ namespace Client
             }
             catch (SecurityException ex)
             {
-              MessageBox.Show("Error: Could not read file from disk. Original error: " +
-                ex.Message);
+              MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
               throw;
             }
           }

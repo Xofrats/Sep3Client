@@ -76,19 +76,16 @@ namespace Client
 
     private void BtnAccept_Click(object sender, EventArgs e)
     {
-      //Tager teksten fra textbox message
-      string input = textBoxFriendRequest.Text.Trim();
-      //tømmer textbox
-      textBoxFriendRequest.Clear();
+      Message JsonObject = new Message();
 
-            //Laver json objekt
-            Message JsonObject = new Message
-            {
-                Username = input,
-                Function = "Accepted"
-            };
+        //Tager teksten fra textbox message
+        string input = textBoxFriendRequest.Text.Trim();
+        //tømmer textbox
+        textBoxFriendRequest.Clear();
+        JsonObject.Username = input;
+        JsonObject.Function = "Accepted";
 
-      ServerFunctions.AddToQueue(JsonObject);
+        ServerFunctions.AddToQueue(JsonObject);
     }
 
     private void BtnReject_Click(object sender, EventArgs e)
@@ -142,12 +139,7 @@ namespace Client
             {
                 TbFriends.Invoke(new Action(() => { HiddenFriends.PerformClick(); }));
             }
-          
-
         }
-
-
-       
 
         private void BTNtest_Click(object sender, EventArgs e)
         {
@@ -241,20 +233,6 @@ namespace Client
         this.textBoxStatus.Text = text;
       }
     }
-  }
-        {
-
-          if (textBoxFriendRequest.InvokeRequired)
-          {
-            SetTextCallback d = new SetTextCallback(ChangeFriendRequest);
-            textBoxFriendRequest.Invoke(d, new object[] { textBoxFriendRequest.Text + text + Environment.NewLine });
-          }
-          else
-          {
-            this.textBoxFriendRequest.Text = text;
-          }
-
-        }
 
         private void Get_Chatlogs(object sender, EventArgs e)
         {
@@ -268,5 +246,5 @@ namespace Client
  
             ServerFunctions.AddToQueue(JsonObject);
         }
-    }
+  }
 }
