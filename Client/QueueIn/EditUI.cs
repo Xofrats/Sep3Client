@@ -17,8 +17,11 @@ namespace Client.QueueIn
 
     public void AddToChatWindow(String FromUsername, String Message)
     {
-            ChatWindow Chat = AllGUIs.GetGUI(FromUsername);
-            Chat.ChangeChatWindow(Message);
+            if (AllGUIs.GetGUI(FromUsername) != null)
+            {
+                ChatWindow Chat = AllGUIs.GetGUI(FromUsername);
+                Chat.ChangeChatWindow(Message);
+            }
     }
 
         public void AddingChatlogs(List<String> ChatLogs, String Username)

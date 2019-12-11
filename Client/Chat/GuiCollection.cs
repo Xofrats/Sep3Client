@@ -36,7 +36,9 @@ namespace Client.Chat
 
         public ChatWindow GetGUI(String Name)
         {
+            if(AllChats.ContainsKey(Name))
             return AllChats[Name];
+            return null;
         }
     }
 }
