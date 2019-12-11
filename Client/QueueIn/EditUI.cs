@@ -40,7 +40,17 @@ namespace Client.QueueIn
       }
     }
 
-    public void GetAllFriendRequest(String message)
+        public void AddLogsToGroupWindow(List<String> ChatLogs, String GroupID)
+        {
+            UIGrupper Group = AllGUIs.GetGroupGUI(GroupID);
+
+            foreach (String log in ChatLogs)
+            {
+                Group.ChangeGroupWindow(log);
+            }
+        }
+
+        public void GetAllFriendRequest(String message)
     {
       UI.GUIinstance.ChangeAllFriendList(message);
     }
@@ -65,9 +75,9 @@ namespace Client.QueueIn
         UI.GUIinstance.AddToFriendWindow(Names);
       }
 
-    public void AddToGroupWindow(List<String> Names, int count)
+    public void AddToGroupWindow(List<String> Names)
     {
-      UI.GUIinstance.AddToGroupWindow(Names, count);
+      UI.GUIinstance.AddToGroupWindow(Names);
     }
 
     public void Login()

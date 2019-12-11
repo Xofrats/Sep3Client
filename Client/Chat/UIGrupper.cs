@@ -14,7 +14,7 @@ namespace Client
   public partial class UIGrupper : Form
   {
 
-    public String GroupMembers { get; set; }
+    public String GroupName { get; set; }
     ServerFunctions Server = new ServerFunctions();
     GuiCollection AllGUIs = GuiCollection.GetCollectionsInstance;
     delegate void SetTextCallback(string text);
@@ -22,12 +22,26 @@ namespace Client
     public UIGrupper(String NewGroup)
     {
       InitializeComponent();
-      GroupMembers = NewGroup;
+      GroupName = NewGroup;
       AllGUIs.AddGUIGroup(NewGroup, this);
-      Console.WriteLine(GroupMembers);
+      Console.WriteLine(GroupName);
+      GetChatLog();
     }
 
-    private void BntTilføj_Click(object sender, EventArgs e)
+        public void GetChatLog()
+        {
+            Message JsonObject = new Message
+            {
+
+                Function = "Get Chatlog",
+                GroupID = Int32.Parse(GroupName)
+
+            };
+
+            Server.AddToQueue(JsonObject);
+        }
+
+            private void BntTilføj_Click(object sender, EventArgs e)
     {
       //Tager teksten fra textbox message
       string input = textBoxTilføj.Text;
@@ -57,7 +71,7 @@ namespace Client
       {
         Chat = input,
         Function = "Group chat",
-        Group = GroupMembers
+        Group = GroupName
       };
 
       //Objektet tager ServerFunctions sig af
@@ -68,7 +82,8 @@ namespace Client
     public void ChangeGroupWindow(String text)
     {
       Console.WriteLine(text);
-      Console.WriteLine("GM er {0}", GroupMembers);
+      Console.WriteLine("GM er {0}", GroupName);
+
       if (tbChat.InvokeRequired)
       {
         SetTextCallback d = new SetTextCallback(ChangeGroupWindow);

@@ -36,6 +36,7 @@ namespace Client.Chat
 
     public void AddGUIGroup(String Name, UIGrupper GUIGroup)
     {
+            Console.WriteLine("Got: " + Name + "and " + GUIGroup.Name);
       AllGroups.Add(Name, GUIGroup);
     }
 

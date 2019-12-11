@@ -12,7 +12,7 @@ namespace Client
         public String Chat { get; set; }
         public String Username { get; set; }
         public String Password { get; set; }
-        public String Email { get; set; }
+        public int GroupID { get; set; }
         public int Count { get; set; }
         public String File { get; set; }
         public String fileName { get; set; }

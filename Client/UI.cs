@@ -18,9 +18,9 @@ namespace Client
     ServerFunctions ServerFunctions = new ServerFunctions();
     //Kan gemme UIen i sig selv
     public static UI GUIinstance;
-    public int NumberOfFriends { get; set; }
-    public List<String> NamesOfFriends { get; set; }
-    delegate void SetTextCallback(string text);
+    public List<String> AllFriends { get; set; }
+        public List<String> AllGroups { get; set; }
+        delegate void SetTextCallback(string text);
 
 
 
@@ -144,20 +144,18 @@ namespace Client
       ServerFunctions.AddToQueue(JsonObject);
     }
 
-    public void AddToFriendWindow(List<String> Names, int Count)
-    {
-      NumberOfFriends = Count;
-      NamesOfFriends = Names;
+    public void AddToFriendWindow(List<String> Names)
+    { 
+      AllFriends = Names;
       if (TbFriends.InvokeRequired)
       {
         TbFriends.Invoke(new Action(() => { HiddenFriends.PerformClick(); }));
       }
     }
 
-    public void AddToGroupWindow(List<String> Names, int Count)
+    public void AddToGroupWindow(List<String> Names)
     {
-      NumberOfFriends = Count;
-      NamesOfFriends = Names;
+      AllGroups = Names;
       if (TbFriends.InvokeRequired)
       {
         TbFriends.Invoke(new Action(() => { HiddenGroups.PerformClick(); }));
@@ -165,28 +163,33 @@ namespace Client
     }
 
 
-       
+
 
         private void BTNHiddenFriends_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < NamesOfFriends.Count; i++)
+            Console.WriteLine("making buttons");
+            for (int i = 0; i < AllFriends.Count; i++)
             {
                 Button btn = new Button
                 {
                     Location = new Point(0, i * 25),
-                    Name = NamesOfFriends[i],
-                    Text = NamesOfFriends[i]
+                    Name = AllFriends[i],
+                    Text = AllFriends[i]
                 };
                 btn.Click += new EventHandler(Start_Chat);
+                TbFriends.Controls.Add(btn);
+            }
+        }
+
     private void btnGroupChat_Click(object sender, EventArgs e)
-    {
-      for (int i = 0; i < NumberOfFriends; i++)
+    { 
+      for (int i = 0; i < AllGroups.Count; i++)
       {
         Button btn = new Button
         {
           Location = new Point(0, i * 25),
-          Name = NamesOfFriends[i],
-          Text = NamesOfFriends[i]
+          Name = AllGroups[i],
+          Text = AllGroups[i]
           
         };
         btn.Click += new EventHandler(Start_Group_Chat);

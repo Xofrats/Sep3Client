@@ -13,11 +13,11 @@ using System.Windows.Forms;
 
 namespace Client.QueueIn
 {
-  class InConsumer
-  {
-    private Queue<dynamic> InFromServerQueue = InQueue.Instance.InFromServerQueue;
-    EditUI Edit = new EditUI();
-    List<String> requestList = new List<string>();
+    class InConsumer
+    {
+        private Queue<dynamic> InFromServerQueue = InQueue.Instance.InFromServerQueue;
+        EditUI Edit = new EditUI();
+        List<String> requestList = new List<string>();
 
         public void FromServer()
         {
@@ -36,6 +36,11 @@ namespace Client.QueueIn
                             Edit.AddToChatWindow((String)fromServer.username, (String)fromServer.username + " wrote: " + (String)fromServer.data);
                             break;
 
+                        case "chat group":
+                            Console.WriteLine("Adding to Groupchat window");
+                            Edit.AddToGroupWindow((String)fromServer.groupnumber, (String)fromServer.username + " wrote: " + (String)fromServer.data);
+                            break;
+
                         case "Send file":
                             Console.WriteLine("Adding to chat window");
 
@@ -45,7 +50,7 @@ namespace Client.QueueIn
                             stream.Close();
                             string fileName = Path.GetFileName((String)fromServer.NameOfFile);
 
-            Edit.AddToChatWindow((String)fromServer.username, (String)fromServer.username + " wrote: " + fileName);
+                            Edit.AddToChatWindow((String)fromServer.username, (String)fromServer.username + " wrote: " + fileName);
 
                             break;
 
@@ -60,20 +65,20 @@ namespace Client.QueueIn
                             Edit.AddToFriendWindow(names);
                             break;
 
-          }
+                        case "allGroups":
+                            Console.WriteLine("got all groups");
+                            List<String> groups = new List<string>();
+                            
+                            foreach (var grp in fromServer.data)
+                            {
+                                groups.Add((String)grp);
+                               
+                            }
+                            
+                            Edit.AddToGroupWindow(groups);
+                            break;
 
-          if ((String)fromServer.function == "allGroups")
-          {
-            Console.WriteLine("got all groups");
-            List<String> groups = new List<string>();
-            int Count = 0;
-            foreach (var grp in fromServer.data)
-            {
-              groups.Add((String)grp);
-              Count++;
-            }
-            Console.WriteLine("Count er " + Count);
-            Edit.AddToGroupWindow(groups, Count);
+
                         case "Login":
                             Console.WriteLine("Logging in");
 
@@ -100,22 +105,16 @@ namespace Client.QueueIn
                             Edit.CheckOnFriendRequest((String)fromServer.SendFriendRequest);
                             break;
 
-          if ((String)fromServer.function == "UserDeleted")
-          {
-            Edit.CheckOnFriendRequest((String)fromServer.DeleteUser);
-          }
+                        case "UserDeleted":
+                            Edit.CheckOnFriendRequest((String)fromServer.DeleteUser);
+                            break;
 
-          if ((String)fromServer.function == "newFriend")
-          {
-            Edit.ChangeFriendRequest((String)fromServer.accepted);
-          }
-
-          if ((String)fromServer.function == "UserRejected")
-          {
-            Edit.ChangeFriendRequest((String)fromServer.RejectUser);
-          }
                         case "newFriend":
                             Edit.ChangeFriendRequest((String)fromServer.accepted);
+                            break;
+
+                        case "UserRejected":
+                            Edit.ChangeFriendRequest((String)fromServer.RejectUser);
                             break;
 
                         case "ChatLogs":
@@ -126,7 +125,15 @@ namespace Client.QueueIn
                                 Chatlogs.Add(log);
                             }
 
-                            Edit.AddingChatlogs(Chatlogs, (String)fromServer.Username);
+                            if (fromServer.Username != null)
+                            {
+                                Console.WriteLine("Username: " + fromServer.Username);
+                                Edit.AddingChatlogs(Chatlogs, (String)fromServer.Username);
+                            } else
+                            {
+                                Console.WriteLine("Group ID: " + fromServer.GroupID);
+                                Edit.AddLogsToGroupWindow(Chatlogs, (String)fromServer.GroupID);
+                            }
                             break;
                         /*
                          case "":
@@ -146,4 +153,7 @@ namespace Client.QueueIn
         }
     }
 }
+
+
+
 
