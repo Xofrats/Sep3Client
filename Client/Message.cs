@@ -16,6 +16,7 @@ namespace Client
         public int Count { get; set; }
         public String File { get; set; }
         public String fileName { get; set; }
+        public String Group { get; set; }
 
     public string ToJson()
         {

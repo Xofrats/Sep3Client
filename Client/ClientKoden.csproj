@@ -59,10 +59,10 @@
       <DependentUpon>ChatWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Chat\GuiCollection.cs" />
-    <Compile Include="GruppeChat\UIGrupper.cs">
+    <Compile Include="Chat\UIGrupper.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GruppeChat\UIGrupper.Designer.cs">
+    <Compile Include="Chat\UIGrupper.Designer.cs">
       <DependentUpon>UIGrupper.cs</DependentUpon>
     </Compile>
     <Compile Include="UILogin.cs">
@@ -104,7 +104,7 @@
     <EmbeddedResource Include="Chat\ChatWindow.resx">
       <DependentUpon>ChatWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GruppeChat\UIGrupper.resx">
+    <EmbeddedResource Include="Chat\UIGrupper.resx">
       <DependentUpon>UIGrupper.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UILogin.resx">

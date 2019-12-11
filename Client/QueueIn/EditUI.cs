@@ -7,58 +7,69 @@ using System.Threading.Tasks;
 
 namespace Client.QueueIn
 {
-    class EditUI
+  class EditUI
+  {
+    GuiCollection AllGUIs = GuiCollection.GetCollectionsInstance;
+
+    public EditUI()
     {
-        GuiCollection AllGUIs = GuiCollection.GetCollectionsInstance;
+    }
 
-        public EditUI()
-        {
-        }
+    public void AddToChatWindow(String FromUsername, String Message)
+    {
+      ChatWindow Chat = AllGUIs.GetGUI(FromUsername);
+      Chat.ChangeChatWindow(Message);
+    }
 
-      public void AddToChatWindow(String FromUsername, String Message)
+    public void AddToGroupWindow(String FromUsername, String Message)
+    {
+      UIGrupper Group = AllGUIs.GetGroupGUI(FromUsername);
+      Group.ChangeGroupWindow(Message);
+    }
+
+    public void AddingChatlogs(List<String> ChatLogs, String Username)
+    {
+      ChatWindow Chat = AllGUIs.GetGUI(Username);
+
+      foreach (String log in ChatLogs)
       {
-        ChatWindow Chat = AllGUIs.GetGUI(FromUsername);
-        Chat.ChangeChatWindow(Message);
+        Chat.ChangeChatWindow(log);
       }
+    }
 
-      public void AddingChatlogs(List<String> ChatLogs, String Username)
-      {
-        ChatWindow Chat = AllGUIs.GetGUI(Username);
+    public void GetAllFriendRequest(String message)
+    {
+      UI.GUIinstance.ChangeAllFriendList(message);
+    }
 
-        foreach (String log in ChatLogs)
-        {
-            Chat.ChangeChatWindow(log);
-        }
-      }
+    public void GetOneFriendRequest(String message)
+    {
+      UI.GUIinstance.ChangeOneFriendList(message);
+    }
 
-      public void GetAllFriendRequest(String message)
-      {
-        UI.GUIinstance.ChangeAllFriendList(message);
-      }
+    public void CheckOnFriendRequest(String message)
+    {
+      UI.GUIinstance.ChangeMyFriendRequest(message);
+    }
 
-      public void GetOneFriendRequest(String message)
-      {
-        UI.GUIinstance.ChangeOneFriendList(message);
-      }
+    public void ChangeFriendRequest(String message)
+    {
+      UI.GUIinstance.ChangeFriendRequest(message);
+    }
 
-      public void CheckOnFriendRequest(String message)
-      {
-        UI.GUIinstance.ChangeMyFriendRequest(message);
-      }
+    public void AddToFriendWindow(List<String> Names, int count)
+    {
+      UI.GUIinstance.AddToFriendWindow(Names, count);
+    }
 
-      public void ChangeFriendRequest(String message)
-      {
-        UI.GUIinstance.ChangeFriendRequest(message);
-      }
+    public void AddToGroupWindow(List<String> Names, int count)
+    {
+      UI.GUIinstance.AddToGroupWindow(Names, count);
+    }
 
-      public void AddToFriendWindow(List<String> Names, int count)
-      {
-        UI.GUIinstance.AddToFriendWindow(Names, count);
-      }
-
-      public void Login()
-      {
-        Form1.GUIinstance.LoginToChat();
-      }
+    public void Login()
+    {
+      Form1.GUIinstance.LoginToChat();
+    }
   }
 }
