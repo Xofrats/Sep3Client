@@ -19,56 +19,46 @@ namespace Client.QueueIn
     EditUI Edit = new EditUI();
     List<String> requestList = new List<string>();
 
-    public void FromServer()
-    {
-      while (true)
-      {
-        if (InFromServerQueue.Count > 0)
+        public void FromServer()
         {
-          Console.WriteLine("inConsumer working");
-          dynamic fromServer = InFromServerQueue.Dequeue();
-          Console.WriteLine("function is: " + fromServer.function);
+            while (true)
+            {
+                if (InFromServerQueue.Count > 0)
+                {
+                    Console.WriteLine("inConsumer working");
+                    dynamic fromServer = InFromServerQueue.Dequeue();
+                    Console.WriteLine("function is: " + fromServer.function);
 
-          if ((String)fromServer.function == "chat")
-          {
-            Console.WriteLine("Adding to chat window");
+                    switch ((String)fromServer.function)
+                    {
+                        case "chat":
+                            Console.WriteLine("Adding to chat window");
+                            Edit.AddToChatWindow((String)fromServer.username, (String)fromServer.username + " wrote: " + (String)fromServer.data);
+                            break;
 
-            Edit.AddToChatWindow((String)fromServer.username, (String)fromServer.username + " wrote: " + (String)fromServer.data);
+                        case "Send file":
+                            Console.WriteLine("Adding to chat window");
 
-          }
-
-          if ((String)fromServer.function == "chat group")
-          {
-            Console.WriteLine("Adding to chat window");
-
-            Edit.AddToGroupWindow((String)fromServer.username, (String)fromServer.username + " wrote: " + (String)fromServer.data);
-
-          }
-
-          if ((String)fromServer.function == "Send file")
-          {
-            Console.WriteLine("Adding to chat window");
-
-            string str = (string)fromServer.File;
-            string fileName = Path.GetFileName((String)fromServer.NameOfFile);
-            string path = $"C:\\Users\\{Environment.UserName}\\Downloads\\{fileName}";
-            File.WriteAllBytes(path, Encoding.ASCII.GetBytes(str));
+                            IFormatter formatter = new BinaryFormatter();
+                            Stream stream = new FileStream(@"C:\Users\armin\Dropbox\UNI\3. semester\DNP1\dnpTest.txt", FileMode.Create, FileAccess.Write, FileShare.None);
+                            formatter.Serialize(stream, fromServer.File);
+                            stream.Close();
+                            string fileName = Path.GetFileName((String)fromServer.NameOfFile);
 
             Edit.AddToChatWindow((String)fromServer.username, (String)fromServer.username + " wrote: " + fileName);
 
-          }
+                            break;
 
-          if ((String)fromServer.function == "allFriends")
-          {
-            Console.WriteLine("got all friends");
-            List<String> names = new List<string>();
-            int Count = 0;
-            foreach (var ven in fromServer.data)
-            {
-              names.Add((String)ven);
-              Count++;
-            }
-            Edit.AddToFriendWindow(names, Count);
+                        case "allFriends":
+                            Console.WriteLine("got all friends");
+                            List<String> names = new List<string>();
+                            foreach (var ven in fromServer.data)
+                            {
+                                names.Add((String)ven);
+                                Console.WriteLine((String)ven);
+                            }
+                            Edit.AddToFriendWindow(names);
+                            break;
 
           }
 
@@ -84,44 +74,31 @@ namespace Client.QueueIn
             }
             Console.WriteLine("Count er " + Count);
             Edit.AddToGroupWindow(groups, Count);
+                        case "Login":
+                            Console.WriteLine("Logging in");
 
-          }
+                            Edit.Login();
+                            break;
 
-          if ((String)fromServer.function == "Login")
-          {
-            Edit.Login();
-          }
+                        case "friendList":
+                            String data = "";
+                            foreach (string request in fromServer.FriendRequest)
+                            {
+                                data += request + Environment.NewLine;
+                            }
+                            Edit.GetAllFriendRequest(data);
 
-          if ((String)fromServer.function == "friendList")
-          {
-            String data = "";
-            List<String> first = new List<string>();
-            foreach (string request in fromServer.FriendRequest)
-            {
-              data += request + Environment.NewLine;
-            }
-            Edit.GetAllFriendRequest(data);
+                            List<String> first = new List<string>();
+                            foreach (string request in fromServer.FriendRequest)
+                            {
+                                first.Add(request);
+                            }
+                            Edit.GetOneFriendRequest(first[0]);
+                            break;
 
-            //bool isEmpty = !first.Any();
-            //if (isEmpty)
-            //{
-            //  Edit.GetOneFriendRequest("You have no request");
-            //}
-            //else
-            //{
-            foreach (string request in fromServer.FriendRequest)
-            {
-              first.Add(request);
-            }
-            Edit.GetOneFriendRequest(first.First());
-            //}
-
-          }
-
-          if ((String)fromServer.function == "MyFriendRequest")
-          {
-            Edit.CheckOnFriendRequest((String)fromServer.SendFriendRequest);
-          }
+                        case "MyFriendRequest":
+                            Edit.CheckOnFriendRequest((String)fromServer.SendFriendRequest);
+                            break;
 
           if ((String)fromServer.function == "UserDeleted")
           {
@@ -137,22 +114,36 @@ namespace Client.QueueIn
           {
             Edit.ChangeFriendRequest((String)fromServer.RejectUser);
           }
+                        case "newFriend":
+                            Edit.ChangeFriendRequest((String)fromServer.accepted);
+                            break;
 
-          if ((String)fromServer.function == "ChatLogs")
-          {
-            Console.WriteLine("got chatlogs");
-            List<String> Chatlogs = new List<String>();
-            foreach (string log in fromServer.Log)
-            {
-              Chatlogs.Add(log);
+                        case "ChatLogs":
+                            Console.WriteLine("got chatlogs");
+                            List<String> Chatlogs = new List<String>();
+                            foreach (string log in fromServer.Log)
+                            {
+                                Chatlogs.Add(log);
+                            }
+
+                            Edit.AddingChatlogs(Chatlogs, (String)fromServer.Username);
+                            break;
+                        /*
+                         case "":
+
+                         break;
+                        */
+
+                        default:
+                            Console.WriteLine("No match");
+                            break;
+                    }
+
+                }
+
+
             }
-
-            Edit.AddingChatlogs(Chatlogs, (String)fromServer.Username);
-
-          }
-
         }
-      }
     }
-  }
 }
+

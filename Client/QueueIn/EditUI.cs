@@ -17,8 +17,11 @@ namespace Client.QueueIn
 
     public void AddToChatWindow(String FromUsername, String Message)
     {
-      ChatWindow Chat = AllGUIs.GetGUI(FromUsername);
-      Chat.ChangeChatWindow(Message);
+            if (AllGUIs.GetGUI(FromUsername) != null)
+            {
+                ChatWindow Chat = AllGUIs.GetGUI(FromUsername);
+                Chat.ChangeChatWindow(Message);
+            }
     }
 
     public void AddToGroupWindow(String FromUsername, String Message)
@@ -57,10 +60,10 @@ namespace Client.QueueIn
       UI.GUIinstance.ChangeFriendRequest(message);
     }
 
-    public void AddToFriendWindow(List<String> Names, int count)
-    {
-      UI.GUIinstance.AddToFriendWindow(Names, count);
-    }
+    public void AddToFriendWindow(List<String> Names)
+      {
+        UI.GUIinstance.AddToFriendWindow(Names);
+      }
 
     public void AddToGroupWindow(List<String> Names, int count)
     {

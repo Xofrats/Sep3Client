@@ -25,7 +25,7 @@ namespace Client.QueueIn
             {
                 int recv = client.Network.Read(data, 0, data.Length);
                 Console.WriteLine("Got something from Server");
-                stringData = Encoding.ASCII.GetString(data, 0, recv);
+                stringData = Encoding.UTF8.GetString(data, 0, recv);
 
                 dynamic test = JsonConvert.DeserializeObject(stringData);
 

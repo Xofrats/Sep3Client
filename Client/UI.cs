@@ -164,23 +164,20 @@ namespace Client
       }
     }
 
-    private void BTNtest_Click(object sender, EventArgs e)
-    {
-      for (int i = 0; i < NumberOfFriends; i++)
-      {
-        Button btn = new Button
+
+       
+
+        private void BTNHiddenFriends_Click(object sender, EventArgs e)
         {
-          Location = new Point(0, i * 25),
-          Name = NamesOfFriends[i],
-          Text = NamesOfFriends[i]
-        };
-        btn.Click += new EventHandler(Start_Chat);
-
-        TbFriends.Controls.Add(btn);
-      }
-
-    }
-
+            for (int i = 0; i < NamesOfFriends.Count; i++)
+            {
+                Button btn = new Button
+                {
+                    Location = new Point(0, i * 25),
+                    Name = NamesOfFriends[i],
+                    Text = NamesOfFriends[i]
+                };
+                btn.Click += new EventHandler(Start_Chat);
     private void btnGroupChat_Click(object sender, EventArgs e)
     {
       for (int i = 0; i < NumberOfFriends; i++)

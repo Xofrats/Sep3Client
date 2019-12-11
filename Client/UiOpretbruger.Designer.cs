@@ -110,7 +110,6 @@
             this.Controls.Add(this.label1);
             this.Name = "UiOpretbruger";
             this.Text = "Form2";
-            this.Load += new System.EventHandler(this.UiOpretbruger_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
