@@ -138,9 +138,9 @@ namespace Client
 
  
 
-        public void AddToFriendWindow(List<String> Names, int Count)
+        public void AddToFriendWindow(List<String> Names)
         {
-            NumberOfFriends = Count;
+          
             NamesOfFriends = Names;
             if (TbFriends.InvokeRequired)
             {
@@ -153,9 +153,9 @@ namespace Client
 
        
 
-        private void BTNtest_Click(object sender, EventArgs e)
+        private void BTNHiddenFriends_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < NumberOfFriends; i++)
+            for (int i = 0; i < NamesOfFriends.Count; i++)
             {
                 Button btn = new Button
                 {

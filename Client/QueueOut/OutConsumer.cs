@@ -33,7 +33,7 @@ namespace Client
                         String json = JsonConvert.SerializeObject(message);
 
                         //Laver json string om til bytes og sender dem
-                        client.Network.Write(Encoding.ASCII.GetBytes(json), 0, json.Length);
+                        client.Network.Write(Encoding.UTF8.GetBytes(json), 0, json.Length);
 
                         //13 er et linje skrift og aflutter linjen
                         client.Network.WriteByte(13);

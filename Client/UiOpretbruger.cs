@@ -23,6 +23,8 @@ namespace Client
            
             string input1 = textBoxUsername.Text;
             string input2 = textBoxPassword.Text;
+
+            int hash = input2.GetHashCode();
             
             //tømmer textbox
            ;
@@ -32,7 +34,7 @@ namespace Client
             //Laver json objekt
             Message JsonObject = new Message
             {
-                Password = input2,
+                Password = hash.ToString(),
                 Username = input1,
                 Function = "create user"
             };
@@ -41,9 +43,6 @@ namespace Client
             ServerFunctions.AddToQueue(JsonObject);
         }
 
-        private void UiOpretbruger_Load(object sender, EventArgs e)
-        {
-
-        }
+     
     }
 }

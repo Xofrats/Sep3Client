@@ -193,7 +193,7 @@ namespace Client
             this.HiddenFriends.Size = new System.Drawing.Size(100, 12);
             this.HiddenFriends.TabIndex = 17;
             this.HiddenFriends.UseVisualStyleBackColor = true;
-            this.HiddenFriends.Click += new System.EventHandler(this.BTNtest_Click);
+            this.HiddenFriends.Click += new System.EventHandler(this.BTNHiddenFriends_Click);
             // 
             // button1
             // 
