@@ -233,6 +233,8 @@ namespace Client
         this.textBoxStatus.Text = text;
       }
     }
+  
+      
 
         private void Get_Chatlogs(object sender, EventArgs e)
         {
@@ -246,5 +248,17 @@ namespace Client
  
             ServerFunctions.AddToQueue(JsonObject);
         }
-  }
+    
+
+
+        private void bntOpretGruppe(object sender, EventArgs e)
+        {
+            UIGrupper groupChatWindow = new UIGrupper((sender as Button).Text);
+            groupChatWindow.Show();
+
+
+        }
+
+        
+    }
 }
