@@ -97,5 +97,12 @@ namespace Client.QueueIn
             VoiceChat.SetIP(IP);
             VoiceChat.SetPort(PORT);
         }
+
+        public void VoiceChatReject(String Username)
+        {
+            WavPlayer.wfrm_Main VoiceChat = AllGUIs.GetVoiceChatGUI(Username);
+            AllGUIs.RemoveVoiceChat(Username);
+            System.Windows.Forms.MessageBox.Show(Username + " is busy");
+        }
     }
 }

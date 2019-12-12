@@ -144,6 +144,11 @@ namespace Client.QueueIn
                             Console.WriteLine((String)fromServer.username + " accepted voicechat");
                             Edit.VoiceChatAccept((String)fromServer.username, (String)fromServer.IP, (Int32)fromServer.PORT);
                             break;
+
+                        case "VoiceChatReject":
+                            Console.WriteLine((String)fromServer.username + " rejected voicechat");
+                            Edit.VoiceChatReject((String)fromServer.username);
+                            break;
                         /*
                          case "":
 

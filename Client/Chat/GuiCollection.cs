@@ -62,5 +62,12 @@ namespace Client.Chat
             Console.WriteLine("Hvad er {0}", Name);
             return AllVoiceChats[Name];
         }
+
+        public void RemoveVoiceChat(String Name)
+        {
+            AllVoiceChats.Remove(Name);
+        }
+
+
     }
 }
