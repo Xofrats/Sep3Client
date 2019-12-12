@@ -39,7 +39,7 @@ namespace Client
 
         Function = "Get Chatlog",
         Username = Name,
-        Count = 3
+        Count = 2
 
       };
 

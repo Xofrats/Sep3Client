@@ -40,7 +40,12 @@ namespace Client.QueueIn
       }
     }
 
-        public void AddLogsToGroupWindow(List<String> ChatLogs, String GroupID)
+    public void ChangeMemberWindow(String message)
+    {
+      UIGrupper.GUI.ChangeMemberWindow(message);
+    }
+
+    public void AddLogsToGroupWindow(List<String> ChatLogs, String GroupID)
         {
             UIGrupper Group = AllGUIs.GetGroupGUI(GroupID);
 
@@ -68,6 +73,11 @@ namespace Client.QueueIn
     public void ChangeFriendRequest(String message)
     {
       UI.GUIinstance.ChangeFriendRequest(message);
+    }
+
+    public void ChangeGroupCreated(String message)
+    {
+      UI.GUIinstance.ChangeGroupCreated(message);
     }
 
     public void AddToFriendWindow(List<String> Names)

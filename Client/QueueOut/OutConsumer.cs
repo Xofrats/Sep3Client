@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,7 +12,7 @@ namespace Client
         private Client client = Client.Instance;
         public String Username { get; set; }
 
-        private byte[] data = new byte[1024];
+        private byte[] data = new byte[500000];
 
         public OutConsumer()
         {

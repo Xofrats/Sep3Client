@@ -15,6 +15,7 @@ namespace Client
   {
 
     public String GroupName { get; set; }
+    public static UIGrupper GUI;
     ServerFunctions Server = new ServerFunctions();
     GuiCollection AllGUIs = GuiCollection.GetCollectionsInstance;
     delegate void SetTextCallback(string text);
@@ -23,36 +24,53 @@ namespace Client
     {
       InitializeComponent();
       GroupName = NewGroup;
+      GUI = this;
       AllGUIs.AddGUIGroup(NewGroup, this);
       Console.WriteLine(GroupName);
       GetChatLog();
     }
 
-        public void GetChatLog()
-        {
-            Message JsonObject = new Message
-            {
+    public void GetChatLog()
+    {
+      Message JsonObject = new Message
+      {
+        Function = "Get Chatlog",
+        GroupID = Int32.Parse(GroupName)
 
-                Function = "Get Chatlog",
-                GroupID = Int32.Parse(GroupName)
+      };
 
-            };
+      Server.AddToQueue(JsonObject);
+    }
 
-            Server.AddToQueue(JsonObject);
-        }
-
-            private void BntTilføj_Click(object sender, EventArgs e)
+    private void BntTilføj_Click(object sender, EventArgs e)
     {
       //Tager teksten fra textbox message
-      string input = textBoxTilføj.Text;
+      string input = tbMember.Text;
       //tømmer textbox
-      textBoxTilføj.Clear();
+      tbMember.Clear();
 
       //Laver json objekt
       Message JsonObject = new Message
       {
         Username = input,
-        Function = "addGroupMemeber"
+        Function = "Add user"
+
+      };
+      Server.AddToQueue(JsonObject);
+    }
+
+    private void bntFjern_Click(object sender, EventArgs e)
+    {
+      //Tager teksten fra textbox message
+      string input = tbMember.Text;
+      //tømmer textbox
+      tbMember.Clear();
+
+      //Laver json objekt
+      Message JsonObject = new Message
+      {
+        Username = input,
+        Function = "Remove user"
 
       };
       Server.AddToQueue(JsonObject);
@@ -92,6 +110,20 @@ namespace Client
       else
       {
         this.tbChat.Text = text;
+      }
+
+    }
+
+    public void ChangeMemberWindow(String text)
+    {
+      if (tbMember.InvokeRequired)
+      {
+        SetTextCallback d = new SetTextCallback(ChangeMemberWindow);
+        tbMember.Invoke(d, new object[] { tbMember.Text + text + Environment.NewLine });
+      }
+      else
+      {
+        this.tbMember.Text = text;
       }
 
     }

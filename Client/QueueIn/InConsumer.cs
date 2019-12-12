@@ -117,7 +117,15 @@ namespace Client.QueueIn
                             Edit.ChangeFriendRequest((String)fromServer.RejectUser);
                             break;
 
-                        case "ChatLogs":
+                        case "GroupCreated":
+                            Edit.ChangeGroupCreated((String)fromServer.data);
+                        break;
+
+                        case "Member":
+                            Edit.ChangeMemberWindow((String)fromServer.data);
+                        break;
+
+            case "ChatLogs":
                             Console.WriteLine("got chatlogs");
                             List<String> Chatlogs = new List<String>();
                             foreach (string log in fromServer.Log)

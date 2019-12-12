@@ -300,12 +300,29 @@ namespace Client
 
     private void bntOpretGruppe(object sender, EventArgs e)
     {
-      UIGrupper groupChatWindow = new UIGrupper((sender as Button).Text);
-      groupChatWindow.Show();
+      Message JsonObject = new Message();
 
+      //Tager teksten fra textbox message
+      string input = tbCreateGroup.Text;
+      //tømmer textbox
+      tbCreateGroup.Clear();
+      JsonObject.Group = input;
+      JsonObject.Function = "Create group";
 
+      ServerFunctions.AddToQueue(JsonObject);
     }
 
-
+    public void ChangeGroupCreated(String text)
+    {
+      if (tbCreateGroup.InvokeRequired)
+      {
+        SetTextCallback d = new SetTextCallback(ChangeGroupCreated);
+        tbCreateGroup.Invoke(d, new object[] { tbCreateGroup.Text + text + Environment.NewLine });
+      }
+      else
+      {
+        this.tbCreateGroup.Text = text;
+      }
+    }
   }
 }
