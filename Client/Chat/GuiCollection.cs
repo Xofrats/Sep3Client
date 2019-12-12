@@ -8,10 +8,11 @@ namespace Client.Chat
 {
   class GuiCollection
   {
-    Dictionary<String, ChatWindow> AllChats = new Dictionary<string, ChatWindow>();
-    Dictionary<String, UIGrupper> AllGroups = new Dictionary<string, UIGrupper>();
+     Dictionary<String, ChatWindow> AllChats = new Dictionary<string, ChatWindow>();
+     Dictionary<String, UIGrupper> AllGroups = new Dictionary<string, UIGrupper>();
+     Dictionary<String, WavPlayer.wfrm_Main> AllVoiceChats = new Dictionary<string, WavPlayer.wfrm_Main>();
 
-    private static GuiCollection CollectionsInstance = null;
+        private static GuiCollection CollectionsInstance = null;
 
     private GuiCollection()
     {
@@ -50,5 +51,16 @@ namespace Client.Chat
       Console.WriteLine("Hvad er {0}", Name);
       return AllGroups[Name];
     }
-  }
+
+        public void AddVoiceChat(String Name, WavPlayer.wfrm_Main GUIVoiceChat)
+        {
+            AllVoiceChats.Add(Name, GUIVoiceChat);
+        }
+
+        public WavPlayer.wfrm_Main GetVoiceChatGUI(String Name)
+        {
+            Console.WriteLine("Hvad er {0}", Name);
+            return AllVoiceChats[Name];
+        }
+    }
 }

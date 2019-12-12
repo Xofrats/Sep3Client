@@ -135,6 +135,15 @@ namespace Client.QueueIn
                                 Edit.AddLogsToGroupWindow(Chatlogs, (String)fromServer.GroupID);
                             }
                             break;
+
+                        case "VoiceChatRequest":
+                            Edit.OpenVoiceChat((String)fromServer.username, (String)fromServer.IP, (Int32)fromServer.PORT);
+                            break;
+
+                        case "VoiceChatAccept":
+                            Console.WriteLine((String)fromServer.username + " accepted voicechat");
+                            Edit.VoiceChatAccept((String)fromServer.username, (String)fromServer.IP, (Int32)fromServer.PORT);
+                            break;
                         /*
                          case "":
 

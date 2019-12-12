@@ -84,5 +84,18 @@ namespace Client.QueueIn
     {
       Form1.GUIinstance.LoginToChat();
     }
-  }
+
+        public void OpenVoiceChat(String FromUser, String IP, int PORT)
+        {
+
+            UI.GUIinstance.OpenVoiceChat(FromUser, IP, PORT);
+        }
+
+        public void VoiceChatAccept(String Username, String IP, int PORT)
+        {
+            WavPlayer.wfrm_Main VoiceChat = AllGUIs.GetVoiceChatGUI(Username);
+            VoiceChat.SetIP(IP);
+            VoiceChat.SetPort(PORT);
+        }
+    }
 }

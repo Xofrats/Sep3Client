@@ -114,5 +114,11 @@
       <DependentUpon>UI.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\..\Desktop\AdvancedWave\AdvancedWave\WavPlayer\WavPlayer.csproj">
+      <Project>{a529ecb4-e537-49b1-bc71-a940ca2491a9}</Project>
+      <Name>WavPlayer</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

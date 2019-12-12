@@ -61,7 +61,7 @@ namespace Client
             // BtnFriends
             // 
             this.BtnFriends.Location = new System.Drawing.Point(15, 341);
-            this.BtnFriends.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BtnFriends.Margin = new System.Windows.Forms.Padding(4);
             this.BtnFriends.Name = "BtnFriends";
             this.BtnFriends.Size = new System.Drawing.Size(87, 28);
             this.BtnFriends.TabIndex = 4;
@@ -72,7 +72,7 @@ namespace Client
             // btnAddFriend
             // 
             this.btnAddFriend.Location = new System.Drawing.Point(15, 450);
-            this.btnAddFriend.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddFriend.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddFriend.Name = "btnAddFriend";
             this.btnAddFriend.Size = new System.Drawing.Size(87, 28);
             this.btnAddFriend.TabIndex = 5;
@@ -82,7 +82,7 @@ namespace Client
             // btnDeleteFriend
             // 
             this.btnDeleteFriend.Location = new System.Drawing.Point(111, 450);
-            this.btnDeleteFriend.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDeleteFriend.Margin = new System.Windows.Forms.Padding(4);
             this.btnDeleteFriend.Name = "btnDeleteFriend";
             this.btnDeleteFriend.Size = new System.Drawing.Size(100, 28);
             this.btnDeleteFriend.TabIndex = 6;
@@ -92,7 +92,7 @@ namespace Client
             // textBoxUsername
             // 
             this.textBoxUsername.Location = new System.Drawing.Point(15, 418);
-            this.textBoxUsername.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxUsername.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxUsername.Name = "textBoxUsername";
             this.textBoxUsername.Size = new System.Drawing.Size(193, 22);
             this.textBoxUsername.TabIndex = 7;
@@ -111,7 +111,7 @@ namespace Client
             // textBoxFriendRequest
             // 
             this.textBoxFriendRequest.Location = new System.Drawing.Point(189, 551);
-            this.textBoxFriendRequest.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxFriendRequest.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxFriendRequest.Name = "textBoxFriendRequest";
             this.textBoxFriendRequest.ReadOnly = true;
             this.textBoxFriendRequest.Size = new System.Drawing.Size(195, 22);
@@ -120,7 +120,7 @@ namespace Client
             // btnAccept
             // 
             this.btnAccept.Location = new System.Drawing.Point(189, 583);
-            this.btnAccept.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAccept.Margin = new System.Windows.Forms.Padding(4);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(87, 28);
             this.btnAccept.TabIndex = 10;
@@ -131,7 +131,7 @@ namespace Client
             // btnReject
             // 
             this.btnReject.Location = new System.Drawing.Point(285, 583);
-            this.btnReject.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnReject.Margin = new System.Windows.Forms.Padding(4);
             this.btnReject.Name = "btnReject";
             this.btnReject.Size = new System.Drawing.Size(100, 28);
             this.btnReject.TabIndex = 11;
@@ -151,7 +151,7 @@ namespace Client
             // textBoxAllRequest
             // 
             this.textBoxAllRequest.Location = new System.Drawing.Point(15, 526);
-            this.textBoxAllRequest.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxAllRequest.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxAllRequest.Multiline = true;
             this.textBoxAllRequest.Name = "textBoxAllRequest";
             this.textBoxAllRequest.ReadOnly = true;
@@ -161,7 +161,7 @@ namespace Client
             // btnGetFriendRequest
             // 
             this.btnGetFriendRequest.Location = new System.Drawing.Point(15, 641);
-            this.btnGetFriendRequest.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGetFriendRequest.Margin = new System.Windows.Forms.Padding(4);
             this.btnGetFriendRequest.Name = "btnGetFriendRequest";
             this.btnGetFriendRequest.Size = new System.Drawing.Size(167, 28);
             this.btnGetFriendRequest.TabIndex = 14;
@@ -171,7 +171,7 @@ namespace Client
             // textBoxStatus
             // 
             this.textBoxStatus.Location = new System.Drawing.Point(189, 645);
-            this.textBoxStatus.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxStatus.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxStatus.Name = "textBoxStatus";
             this.textBoxStatus.ReadOnly = true;
             this.textBoxStatus.Size = new System.Drawing.Size(193, 22);
@@ -190,7 +190,7 @@ namespace Client
             // HiddenFriends
             // 
             this.HiddenFriends.Location = new System.Drawing.Point(16, 12);
-            this.HiddenFriends.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.HiddenFriends.Margin = new System.Windows.Forms.Padding(4);
             this.HiddenFriends.Name = "HiddenFriends";
             this.HiddenFriends.Size = new System.Drawing.Size(13, 12);
             this.HiddenFriends.TabIndex = 17;
@@ -200,7 +200,7 @@ namespace Client
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(223, 450);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(171, 28);
             this.button1.TabIndex = 18;
@@ -211,7 +211,7 @@ namespace Client
             // btnGroups
             // 
             this.btnGroups.Location = new System.Drawing.Point(111, 342);
-            this.btnGroups.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGroups.Margin = new System.Windows.Forms.Padding(4);
             this.btnGroups.Name = "btnGroups";
             this.btnGroups.Size = new System.Drawing.Size(97, 28);
             this.btnGroups.TabIndex = 19;
@@ -222,7 +222,7 @@ namespace Client
             // HiddenGroups
             // 
             this.HiddenGroups.Location = new System.Drawing.Point(37, 12);
-            this.HiddenGroups.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.HiddenGroups.Margin = new System.Windows.Forms.Padding(4);
             this.HiddenGroups.Name = "HiddenGroups";
             this.HiddenGroups.Size = new System.Drawing.Size(13, 12);
             this.HiddenGroups.TabIndex = 20;
@@ -280,5 +280,5 @@ namespace Client
         private System.Windows.Forms.Button button1;
     private System.Windows.Forms.Button btnGroups;
     private System.Windows.Forms.Button HiddenGroups;
-  }
+    }
 }
