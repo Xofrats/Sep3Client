@@ -81,8 +81,14 @@ namespace Client.QueueIn
 
                         case "Login":
                             Console.WriteLine("Logging in");
-
-                            Edit.Login();
+                            string valid = (String)fromServer.data;
+                            if (valid != null){
+                                Edit.Login();
+                            } else
+                            {
+                                Edit.InvalidLogin("Invalid info");
+                            }
+                           
                             break;
 
                         case "friendList":

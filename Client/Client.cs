@@ -27,7 +27,7 @@ namespace Client
 
         public Client()
         {
-
+            
             try
             {
                 TCPClient = new TcpClient("127.0.0.1", 7331);
@@ -35,10 +35,10 @@ namespace Client
             }
             catch (SocketException e)
             {
-                Console.WriteLine("Unable to connect to server");
                 throw e;
             }
         }
+        
 
         public static Client Instance
         {

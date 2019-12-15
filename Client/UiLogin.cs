@@ -17,15 +17,36 @@ namespace Client
         //Kan gemme UIen i sig selv
         public static Form1 GUIinstance;
         public bool Valid = false;
-        public bool Running = true;
+        public bool Running;
+
+        //Laver de objekter der styr køerne
+        OutConsumer outConsumer = new OutConsumer();
+        InConsumer inConsumer = new InConsumer();
+        InProducer inProducer = new InProducer();
+
+        delegate void SetTextCallback(string text);
+
+
 
         public Form1()
         {
             InitializeComponent();
             // gemmer sig selv
             GUIinstance = this;
-           
+            startThreads();
 
+        }
+
+        public void startThreads()
+        {
+            Thread outConsume = new Thread(new ThreadStart(outConsumer.TakeFromQueue));
+            outConsume.Start();
+
+            Thread inConsume = new Thread(new ThreadStart(inConsumer.FromServer));
+            inConsume.Start();
+
+            Thread inProduce = new Thread(new ThreadStart(inProducer.ListenToServer));
+            inProduce.Start();
         }
         private void BntOpretBrugerSide(object sender, EventArgs e)
         {
@@ -38,6 +59,10 @@ namespace Client
 
         private void BntLogin(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(textBoxPassword.Text) || string.IsNullOrWhiteSpace(textBoxUsername.Text))
+            {
+                return;
+            }
             //Laver json objekt
             Message JsonObject = new Message
             {
@@ -52,6 +77,8 @@ namespace Client
 
             ServerFunctions ServerFunctions = new ServerFunctions();
             ServerFunctions.AddToQueue(JsonObject);
+
+            Running = true;
             while (Running)
             {
                 if (Valid)
@@ -69,5 +96,32 @@ namespace Client
         {
             Valid = true;
         }
-  }
+
+        public void ErrorChat(String text)
+        {
+            Running = false;
+
+            if (textBoxPassword.InvokeRequired)
+            {
+                SetTextCallback d = new SetTextCallback(ErrorChat);
+                textBoxPassword.Invoke(d, new object[] {text});
+                textBoxUsername.Invoke(d, new object[] {text});
+            }
+            else
+            {
+                this.textBoxPassword.Text = text;
+                this.textBoxUsername.Text = text;
+            }
+        }
+
+        private void textBoxUsername_Enter(object sender, EventArgs e)
+        {
+            textBoxUsername.Clear();
+        }
+
+        private void textBoxPassword_Enter(object sender, EventArgs e)
+        {
+            textBoxPassword.Clear();
+        }
+    }
 }

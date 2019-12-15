@@ -18,6 +18,7 @@ namespace Client
     public new String Name { get; set; }
     ServerFunctions Server = new ServerFunctions();
     GuiCollection AllGUIs = GuiCollection.GetCollectionsInstance;
+        private Boolean HasText = false;
 
     delegate void SetTextCallback(string text);
 
@@ -50,23 +51,31 @@ namespace Client
     private void SendChat(object sender, EventArgs e)
     {
 
-      //Tager teksten fra textbox message
-      string input = TbMessage.Text;
+            //Tager teksten fra textbox message
+            if (!(String.IsNullOrEmpty(TbMessage.Text)))
+            {
+                string input = TbMessage.Text;
 
-      //tømmer textbox
-      TbMessage.Clear();
+                //tømmer textbox
+                TbMessage.Clear();
 
-      //Laver json objekt
-      Message JsonObject = new Message
-      {
-        Chat = input,
-        Function = "Chat",
-        Username = Name
-      };
+                //Laver json objekt
+                Message JsonObject = new Message
+                {
+                    Chat = input,
+                    Function = "Chat",
+                    Username = Name,
+                    Count = 2
+                };
 
-      //Objektet tager ServerFunctions sig af
-      Server.AddToQueue(JsonObject);
-      TbChatWindow.Text += "You wrote: " + input + Environment.NewLine;
+                //Objektet tager ServerFunctions sig af
+                Server.AddToQueue(JsonObject);
+                TbChatWindow.Text += "You wrote: " + input + Environment.NewLine;
+            } else
+            {
+                ActiveControl = null;
+                TbMessage.Text = "Write something here";
+            }
 
     }
 
@@ -134,6 +143,18 @@ namespace Client
 
             AllGUIs.AddVoiceChat(Name, VoiceChat);
             VoiceChat.Show();
+        }
+
+      
+
+        private void OnEnter(object sender, EventArgs e)
+        {
+            if (HasText)
+            {
+                return;
+            }
+
+            TbMessage.Clear();
         }
     }
 }

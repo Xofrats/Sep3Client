@@ -84,6 +84,10 @@ namespace Client.QueueIn
     {
       Form1.GUIinstance.LoginToChat();
     }
+        public void InvalidLogin(String text)
+        {
+            Form1.GUIinstance.ErrorChat(text);
+        }
 
         public void OpenVoiceChat(String FromUser, String IP, int PORT)
         {
