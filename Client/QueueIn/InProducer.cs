@@ -13,7 +13,7 @@ namespace Client.QueueIn
         private Queue<dynamic> InFromServerQueue = InQueue.Instance.InFromServerQueue;
 
 
-        byte[] data = new byte[10000];
+        byte[] data = new byte[500000];
         String stringData;
 
        

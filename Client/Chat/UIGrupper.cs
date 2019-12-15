@@ -127,5 +127,30 @@ namespace Client
       }
 
     }
+
+    private void btnGetMembers_Click(object sender, EventArgs e)
+    {
+      //Laver json objekt
+      Message JsonObject = new Message
+      {
+        Function = "Get members"
+      };
+
+      Server.AddToQueue(JsonObject);
+    }
+
+    public void ChangeGroupMember(String text)
+    {
+      if (tbGroupMembers.InvokeRequired)
+      {
+        SetTextCallback d = new SetTextCallback(ChangeGroupMember);
+        tbGroupMembers.Invoke(d, new object[] { tbGroupMembers.Text + text + Environment.NewLine });
+      }
+      else
+      {
+        this.tbGroupMembers.Text = text;
+      }
+
+    }
   }
 }

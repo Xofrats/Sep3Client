@@ -45,6 +45,11 @@ namespace Client.QueueIn
       UIGrupper.GUI.ChangeMemberWindow(message);
     }
 
+    public void ChangeGroupMember(String message)
+    {
+      UIGrupper.GUI.ChangeGroupMember(message);
+    }
+
     public void AddLogsToGroupWindow(List<String> ChatLogs, String GroupID)
         {
             UIGrupper Group = AllGUIs.GetGroupGUI(GroupID);
