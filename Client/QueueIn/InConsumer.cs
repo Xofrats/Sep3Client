@@ -92,17 +92,17 @@ namespace Client.QueueIn
             Edit.ChangeGroupMember(memberList);
             break;
 
-            case "Login":
-
-              Edit.Login();
-
-            break;
-
-            case "Create User":
-
-              Edit.CreateUser((String)fromServer.data);
-
-            break;
+                        case "Login":
+                            Console.WriteLine("Logging in");
+                            string valid = (String)fromServer.data;
+                            if (valid != null){
+                                Edit.Login();
+                            } else
+                            {
+                                Edit.InvalidLogin("Invalid info");
+                            }
+                           
+                            break;
 
             case "friendList":
             String data = "";

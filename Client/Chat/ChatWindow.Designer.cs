@@ -44,6 +44,7 @@ namespace Client
             this.TbMessage.Name = "TbMessage";
             this.TbMessage.Size = new System.Drawing.Size(643, 51);
             this.TbMessage.TabIndex = 0;
+            this.TbMessage.Enter += new System.EventHandler(this.OnEnter);
             // 
             // BtnSend
             // 
@@ -58,6 +59,7 @@ namespace Client
             // 
             // TbChatWindow
             // 
+            this.TbChatWindow.Enabled = false;
             this.TbChatWindow.Location = new System.Drawing.Point(12, 42);
             this.TbChatWindow.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TbChatWindow.Multiline = true;
@@ -86,11 +88,12 @@ namespace Client
             // 
             // button1
             // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(285, 472);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(247, 46);
             this.button1.TabIndex = 5;
-            this.button1.Text = "button1";
+            this.button1.Text = "Start Voice Chat";
             this.button1.UseVisualStyleBackColor = true;
             //this.button1.Click += new System.EventHandler(this.BTNVoiceChat_Start);
             // 

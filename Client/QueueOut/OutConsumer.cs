@@ -9,6 +9,7 @@ namespace Client
     class OutConsumer
     {
         public Queue<ITranferable> OutToServerQueue { get; set; }
+
         private Client client = Client.Instance;
         public String Username { get; set; }
 
@@ -16,11 +17,13 @@ namespace Client
 
         public OutConsumer()
         {
+            //Henter køen
             this.OutToServerQueue = OutQueue.Instance.OutToServerQueue;
         }
 
         public void TakeFromQueue()
         {
+            //Tager fra køen og sender til serveren
             while (true) {
                 if (OutToServerQueue.Count != 0)
                 {
@@ -43,6 +46,7 @@ namespace Client
                     
                 } else
                 {
+                    //hvis køen er tom sover tråden
                     Console.WriteLine("Sleeping");
                     Thread.Sleep(2000);
                 }
