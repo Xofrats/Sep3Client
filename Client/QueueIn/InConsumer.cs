@@ -140,19 +140,32 @@ namespace Client.QueueIn
               Chatlogs.Add(log);
             }
 
-            if (fromServer.Username != null)
-            {
-              Console.WriteLine("Username: " + fromServer.Username);
-              Edit.AddingChatlogs(Chatlogs, (String)fromServer.Username);
-            }
-            else
-            {
-              Console.WriteLine("Group ID: " + fromServer.GroupID);
-              Edit.AddLogsToGroupWindow(Chatlogs, (String)fromServer.GroupID);
-            }
-            break;
-            /*
-             case "":
+                            if (fromServer.Username != null)
+                            {
+                                Console.WriteLine("Username: " + fromServer.Username);
+                                Edit.AddingChatlogs(Chatlogs, (String)fromServer.Username);
+                            } else
+                            {
+                                Console.WriteLine("Group ID: " + fromServer.GroupID);
+                                Edit.AddLogsToGroupWindow(Chatlogs, (String)fromServer.GroupID);
+                            }
+                            break;
+
+                        case "VoiceChatRequest":
+                            Edit.OpenVoiceChat((String)fromServer.username, (String)fromServer.IP, (Int32)fromServer.PORT);
+                            break;
+
+                        case "VoiceChatAccept":
+                            Console.WriteLine((String)fromServer.username + " accepted voicechat");
+                            Edit.VoiceChatAccept((String)fromServer.username, (String)fromServer.IP, (Int32)fromServer.PORT);
+                            break;
+
+                        case "VoiceChatReject":
+                            Console.WriteLine((String)fromServer.username + " rejected voicechat");
+                            Edit.VoiceChatReject((String)fromServer.username);
+                            break;
+                        /*
+                         case "":
 
              break;
             */

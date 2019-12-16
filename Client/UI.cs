@@ -21,10 +21,12 @@ namespace Client
     public List<String> AllFriends { get; set; }
         public List<String> AllGroups { get; set; }
         delegate void SetTextCallback(string text);
+        public Boolean Running { get; set; }
+        public Boolean Valid { get; set; }
 
 
 
-    public UI()
+        public UI()
     {
       //Laver UI'en
       InitializeComponent();
@@ -39,6 +41,11 @@ namespace Client
       HiddenGroups.FlatAppearance.BorderColor = BackColor;
       HiddenGroups.FlatAppearance.MouseOverBackColor = BackColor;
       HiddenGroups.FlatAppearance.MouseDownBackColor = BackColor;
+
+            Running = true;
+            Valid = false;
+
+            
 
     }
 
@@ -300,8 +307,51 @@ namespace Client
 
     private void bntOpretGruppe(object sender, EventArgs e)
     {
-      Message JsonObject = new Message();
+      UIGrupper groupChatWindow = new UIGrupper((sender as Button).Text);
+      groupChatWindow.Show();
+    }
 
+        public void OpenVoiceChat(String FromUser, String IP, int PORT)
+        {
+            var message = "Accept Voicechat from " + FromUser;
+            var title = "Accept Voicechat";
+            var result = MessageBox.Show(
+                message,                  // the message to show
+                title,                    // the title for the dialog box
+                MessageBoxButtons.YesNo,  // show two buttons: Yes and No
+                MessageBoxIcon.Question); // show a question mark icon
+
+            Random RNG = new Random();
+
+            int MyPort = RNG.Next(2000, 9999);
+
+            // the following can be handled as if/else statements as well
+            switch (result)
+            {
+                case DialogResult.Yes:   // Yes button pressed
+                    
+                    WavPlayer.wfrm_Main VoiceChat = new WavPlayer.wfrm_Main(MyPort, IP, PORT, true);
+                    new Thread(() => VoiceChat.ShowDialog()).Start();
+
+                    Message JsonObject = new Message
+                    {
+                        Function = "VoiceChatAccept",
+                        Username = FromUser,
+                        Count = MyPort
+                    };
+                    ServerFunctions.AddToQueue(JsonObject);
+
+                   
+
+                    break;
+
+                case DialogResult.No:    // No button pressed
+                    Message JsonObject1 = new Message
+                    {
+                        Function = "VoiceChatReject",
+                        Username = FromUser
+                    };
+                    ServerFunctions.AddToQueue(JsonObject1);
       //Tager teksten fra textbox message
       string input = tbCreateGroup.Text;
       //tømmer textbox
@@ -309,6 +359,15 @@ namespace Client
       JsonObject.Group = input;
       JsonObject.Function = "Create group";
 
+                    break;
+
+                default:                 // Neither Yes nor No pressed (just in case)
+                    MessageBox.Show("What did you press?");
+                    break;
+            }
+        }
+   
+    }
       ServerFunctions.AddToQueue(JsonObject);
     }
 
