@@ -10,7 +10,7 @@ namespace Client.Chat
   {
      Dictionary<String, ChatWindow> AllChats = new Dictionary<string, ChatWindow>();
      Dictionary<String, UIGrupper> AllGroups = new Dictionary<string, UIGrupper>();
-     Dictionary<String, WavPlayer.wfrm_Main> AllVoiceChats = new Dictionary<string, WavPlayer.wfrm_Main>();
+     //Dictionary<String, WavPlayer.wfrm_Main> AllVoiceChats = new Dictionary<string, WavPlayer.wfrm_Main>();
 
         private static GuiCollection CollectionsInstance = null;
 
@@ -52,21 +52,21 @@ namespace Client.Chat
       return AllGroups[Name];
     }
 
-        public void AddVoiceChat(String Name, WavPlayer.wfrm_Main GUIVoiceChat)
-        {
-            AllVoiceChats.Add(Name, GUIVoiceChat);
-        }
+        //public void AddVoiceChat(String Name, WavPlayer.wfrm_Main GUIVoiceChat)
+        //{
+        //    AllVoiceChats.Add(Name, GUIVoiceChat);
+        //}
 
-        public WavPlayer.wfrm_Main GetVoiceChatGUI(String Name)
-        {
-            Console.WriteLine("Hvad er {0}", Name);
-            return AllVoiceChats[Name];
-        }
+        //public WavPlayer.wfrm_Main GetVoiceChatGUI(String Name)
+        //{
+        //    Console.WriteLine("Hvad er {0}", Name);
+        //    return AllVoiceChats[Name];
+        //}
 
-        public void RemoveVoiceChat(String Name)
-        {
-            AllVoiceChats.Remove(Name);
-        }
+        //public void RemoveVoiceChat(String Name)
+        //{
+        //    AllVoiceChats.Remove(Name);
+        //}
 
 
     }

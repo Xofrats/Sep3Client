@@ -60,9 +60,14 @@ namespace Client.QueueIn
             }
         }
 
-        public void GetAllFriendRequest(String message)
+    public void GetAllFriendRequest(String message)
     {
       UI.GUIinstance.ChangeAllFriendList(message);
+    }
+
+    public void ChangeNoFriends(String message)
+    {
+      UI.GUIinstance.ChangeNoFriends(message);
     }
 
     public void GetOneFriendRequest(String message)
@@ -100,24 +105,29 @@ namespace Client.QueueIn
       Form1.GUIinstance.LoginToChat();
     }
 
-        public void OpenVoiceChat(String FromUser, String IP, int PORT)
-        {
-
-            UI.GUIinstance.OpenVoiceChat(FromUser, IP, PORT);
-        }
-
-        public void VoiceChatAccept(String Username, String IP, int PORT)
-        {
-            WavPlayer.wfrm_Main VoiceChat = AllGUIs.GetVoiceChatGUI(Username);
-            VoiceChat.SetIP(IP);
-            VoiceChat.SetPort(PORT);
-        }
-
-        public void VoiceChatReject(String Username)
-        {
-            WavPlayer.wfrm_Main VoiceChat = AllGUIs.GetVoiceChatGUI(Username);
-            AllGUIs.RemoveVoiceChat(Username);
-            System.Windows.Forms.MessageBox.Show(Username + " is busy");
-        }
+    public void CreateUser(String message)
+    {
+      UiOpretbruger.GUIinstance.ChangeUser(message);
     }
+
+    //public void OpenVoiceChat(String FromUser, String IP, int PORT)
+    //{
+
+    //    UI.GUIinstance.OpenVoiceChat(FromUser, IP, PORT);
+    //}
+
+    //public void VoiceChatAccept(String Username, String IP, int PORT)
+    //{
+    //    WavPlayer.wfrm_Main VoiceChat = AllGUIs.GetVoiceChatGUI(Username);
+    //    VoiceChat.SetIP(IP);
+    //    VoiceChat.SetPort(PORT);
+    //}
+
+    //public void VoiceChatReject(String Username)
+    //{
+    //    WavPlayer.wfrm_Main VoiceChat = AllGUIs.GetVoiceChatGUI(Username);
+    //    AllGUIs.RemoveVoiceChat(Username);
+    //    System.Windows.Forms.MessageBox.Show(Username + " is busy");
+    //}
+  }
 }

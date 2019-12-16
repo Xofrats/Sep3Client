@@ -116,24 +116,24 @@ namespace Client
 
     }
 
-        private void BTNVoiceChat_Start(object sender, EventArgs e)
-        {
-            Random RNG = new Random();
+        //private void BTNVoiceChat_Start(object sender, EventArgs e)
+        //{
+        //    Random RNG = new Random();
 
-            int PortNumber = RNG.Next(2000, 9999);
-            Message JsonObject = new Message
-            {
-                Function = "VoiceChat",
-                Username = Name,
-                Count = PortNumber
-            };
+        //    int PortNumber = RNG.Next(2000, 9999);
+        //    Message JsonObject = new Message
+        //    {
+        //        Function = "VoiceChat",
+        //        Username = Name,
+        //        Count = PortNumber
+        //    };
 
-            Server.AddToQueue(JsonObject);
+        //    Server.AddToQueue(JsonObject);
 
-            WavPlayer.wfrm_Main VoiceChat = new WavPlayer.wfrm_Main(PortNumber, null, 25000, false);
+        //    WavPlayer.wfrm_Main VoiceChat = new WavPlayer.wfrm_Main(PortNumber, null, 25000, false);
 
-            AllGUIs.AddVoiceChat(Name, VoiceChat);
-            VoiceChat.Show();
-        }
+        //    AllGUIs.AddVoiceChat(Name, VoiceChat);
+        //    VoiceChat.Show();
+        //}
     }
 }

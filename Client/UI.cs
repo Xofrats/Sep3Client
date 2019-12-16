@@ -19,14 +19,14 @@ namespace Client
     //Kan gemme UIen i sig selv
     public static UI GUIinstance;
     public List<String> AllFriends { get; set; }
-        public List<String> AllGroups { get; set; }
-        delegate void SetTextCallback(string text);
-        public Boolean Running { get; set; }
-        public Boolean Valid { get; set; }
+    public List<String> AllGroups { get; set; }
+    delegate void SetTextCallback(string text);
+    public Boolean Running { get; set; }
+    public Boolean Valid { get; set; }
 
 
 
-        public UI()
+    public UI()
     {
       //Laver UI'en
       InitializeComponent();
@@ -42,10 +42,10 @@ namespace Client
       HiddenGroups.FlatAppearance.MouseOverBackColor = BackColor;
       HiddenGroups.FlatAppearance.MouseDownBackColor = BackColor;
 
-            Running = true;
-            Valid = false;
+      Running = true;
+      Valid = false;
 
-            
+
 
     }
 
@@ -152,7 +152,7 @@ namespace Client
     }
 
     public void AddToFriendWindow(List<String> Names)
-    { 
+    {
       AllFriends = Names;
       if (TbFriends.InvokeRequired)
       {
@@ -172,24 +172,24 @@ namespace Client
 
 
 
-        private void BTNHiddenFriends_Click(object sender, EventArgs e)
+    private void BTNHiddenFriends_Click(object sender, EventArgs e)
+    {
+      Console.WriteLine("making buttons");
+      for (int i = 0; i < AllFriends.Count; i++)
+      {
+        Button btn = new Button
         {
-            Console.WriteLine("making buttons");
-            for (int i = 0; i < AllFriends.Count; i++)
-            {
-                Button btn = new Button
-                {
-                    Location = new Point(0, i * 25),
-                    Name = AllFriends[i],
-                    Text = AllFriends[i]
-                };
-                btn.Click += new EventHandler(Start_Chat);
-                TbFriends.Controls.Add(btn);
-            }
-        }
+          Location = new Point(0, i * 25),
+          Name = AllFriends[i],
+          Text = AllFriends[i]
+        };
+        btn.Click += new EventHandler(Start_Chat);
+        TbFriends.Controls.Add(btn);
+      }
+    }
 
     private void btnGroupChat_Click(object sender, EventArgs e)
-    { 
+    {
       for (int i = 0; i < AllGroups.Count; i++)
       {
         Button btn = new Button
@@ -197,7 +197,7 @@ namespace Client
           Location = new Point(0, i * 25),
           Name = AllGroups[i],
           Text = AllGroups[i]
-          
+
         };
         btn.Click += new EventHandler(Start_Group_Chat);
 
@@ -228,6 +228,21 @@ namespace Client
       else
       {
         this.textBoxAllRequest.Text = text;
+      }
+
+    }
+
+    public void ChangeNoFriends(string text)
+    {
+
+      if (TbFriends.InvokeRequired)
+      {
+        SetTextCallback d = new SetTextCallback(ChangeNoFriends);
+        TbFriends.Invoke(d, new object[] { TbFriends.Text + text + Environment.NewLine });
+      }
+      else
+      {
+        this.TbFriends.Text = text;
       }
 
     }
@@ -307,51 +322,7 @@ namespace Client
 
     private void bntOpretGruppe(object sender, EventArgs e)
     {
-      UIGrupper groupChatWindow = new UIGrupper((sender as Button).Text);
-      groupChatWindow.Show();
-    }
-
-        public void OpenVoiceChat(String FromUser, String IP, int PORT)
-        {
-            var message = "Accept Voicechat from " + FromUser;
-            var title = "Accept Voicechat";
-            var result = MessageBox.Show(
-                message,                  // the message to show
-                title,                    // the title for the dialog box
-                MessageBoxButtons.YesNo,  // show two buttons: Yes and No
-                MessageBoxIcon.Question); // show a question mark icon
-
-            Random RNG = new Random();
-
-            int MyPort = RNG.Next(2000, 9999);
-
-            // the following can be handled as if/else statements as well
-            switch (result)
-            {
-                case DialogResult.Yes:   // Yes button pressed
-                    
-                    WavPlayer.wfrm_Main VoiceChat = new WavPlayer.wfrm_Main(MyPort, IP, PORT, true);
-                    new Thread(() => VoiceChat.ShowDialog()).Start();
-
-                    Message JsonObject = new Message
-                    {
-                        Function = "VoiceChatAccept",
-                        Username = FromUser,
-                        Count = MyPort
-                    };
-                    ServerFunctions.AddToQueue(JsonObject);
-
-                   
-
-                    break;
-
-                case DialogResult.No:    // No button pressed
-                    Message JsonObject1 = new Message
-                    {
-                        Function = "VoiceChatReject",
-                        Username = FromUser
-                    };
-                    ServerFunctions.AddToQueue(JsonObject1);
+      Message JsonObject = new Message();
       //Tager teksten fra textbox message
       string input = tbCreateGroup.Text;
       //tømmer textbox
@@ -359,18 +330,59 @@ namespace Client
       JsonObject.Group = input;
       JsonObject.Function = "Create group";
 
-                    break;
-
-                default:                 // Neither Yes nor No pressed (just in case)
-                    MessageBox.Show("What did you press?");
-                    break;
-            }
-        }
-   
-    }
       ServerFunctions.AddToQueue(JsonObject);
     }
 
+    //public void OpenVoiceChat(String FromUser, String IP, int PORT)
+    //{
+    //  var message = "Accept Voicechat from " + FromUser;
+    //  var title = "Accept Voicechat";
+    //  var result = MessageBox.Show(
+    //      message,                  // the message to show
+    //      title,                    // the title for the dialog box
+    //      MessageBoxButtons.YesNo,  // show two buttons: Yes and No
+    //      MessageBoxIcon.Question); // show a question mark icon
+
+    //  Random RNG = new Random();
+
+    //  int MyPort = RNG.Next(2000, 9999);
+
+    //  // the following can be handled as if/else statements as well
+    //  switch (result)
+    //  {
+    //    case DialogResult.Yes:   // Yes button pressed
+
+    //    WavPlayer.wfrm_Main VoiceChat = new WavPlayer.wfrm_Main(MyPort, IP, PORT, true);
+    //    new Thread(() => VoiceChat.ShowDialog()).Start();
+
+    //    Message JsonObject = new Message
+    //    {
+    //      Function = "VoiceChatAccept",
+    //      Username = FromUser,
+    //      Count = MyPort
+    //    };
+    //    ServerFunctions.AddToQueue(JsonObject);
+
+
+
+    //    break;
+
+    //    case DialogResult.No:    // No button pressed
+    //    Message JsonObject1 = new Message
+    //    {
+    //      Function = "VoiceChatReject",
+    //      Username = FromUser
+    //    };
+    //    ServerFunctions.AddToQueue(JsonObject1);
+
+    //    break;
+
+    //    default:                 // Neither Yes nor No pressed (just in case)
+    //    MessageBox.Show("What did you press?");
+    //    break;
+    //  }
+    //}
+    
     public void ChangeGroupCreated(String text)
     {
       if (tbCreateGroup.InvokeRequired)

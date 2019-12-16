@@ -64,6 +64,12 @@ namespace Client.QueueIn
             Edit.AddToFriendWindow(names);
             break;
 
+            case "NoFriends":
+
+            Edit.ChangeNoFriends((String)fromServer.data);
+
+            break;
+
             case "allGroups":
             Console.WriteLine("got all groups");
             List<String> groups = new List<string>();
@@ -92,6 +98,12 @@ namespace Client.QueueIn
 
             break;
 
+            case "Create User":
+
+              Edit.CreateUser((String)fromServer.data);
+
+            break;
+
             case "friendList":
             String data = "";
             foreach (string request in fromServer.FriendRequest)
@@ -106,6 +118,10 @@ namespace Client.QueueIn
               first.Add(request);
             }
             Edit.GetOneFriendRequest(first[0]);
+            break;
+
+            case "No friend":
+            Edit.GetOneFriendRequest((String)fromServer.NoFriend);
             break;
 
             case "MyFriendRequest":
@@ -151,19 +167,19 @@ namespace Client.QueueIn
                             }
                             break;
 
-                        case "VoiceChatRequest":
-                            Edit.OpenVoiceChat((String)fromServer.username, (String)fromServer.IP, (Int32)fromServer.PORT);
-                            break;
+                        //case "VoiceChatRequest":
+                        //    Edit.OpenVoiceChat((String)fromServer.username, (String)fromServer.IP, (Int32)fromServer.PORT);
+                        //    break;
 
-                        case "VoiceChatAccept":
-                            Console.WriteLine((String)fromServer.username + " accepted voicechat");
-                            Edit.VoiceChatAccept((String)fromServer.username, (String)fromServer.IP, (Int32)fromServer.PORT);
-                            break;
+                        //case "VoiceChatAccept":
+                        //    Console.WriteLine((String)fromServer.username + " accepted voicechat");
+                        //    Edit.VoiceChatAccept((String)fromServer.username, (String)fromServer.IP, (Int32)fromServer.PORT);
+                        //    break;
 
-                        case "VoiceChatReject":
-                            Console.WriteLine((String)fromServer.username + " rejected voicechat");
-                            Edit.VoiceChatReject((String)fromServer.username);
-                            break;
+                        //case "VoiceChatReject":
+                        //    Console.WriteLine((String)fromServer.username + " rejected voicechat");
+                        //    Edit.VoiceChatReject((String)fromServer.username);
+                        //    break;
                         /*
                          case "":
 
